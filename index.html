@@ -267,6 +267,43 @@
       }
       .empty[hidden] { display: none; }
 
+      /* ---------- Acciones y seguimiento por tarjeta ---------- */
+      .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+      .btn {
+        display: inline-flex; align-items: center; gap: 6px; text-decoration: none;
+        font-size: .86rem; font-weight: 600; padding: 8px 13px; border-radius: 8px;
+        background: var(--accent); color: #fff; border: 1px solid var(--accent);
+      }
+      .btn:hover { text-decoration: none; filter: brightness(1.07); }
+      .btn.ghost { background: var(--surface); color: var(--accent-ink); border-color: var(--line-strong); }
+      @media (prefers-color-scheme: dark) { .btn { color: #0d141a; } .btn.ghost { color: var(--accent-ink); } }
+      .track-row { margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--line); display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+      .track-row label { font-size: .8rem; font-weight: 700; letter-spacing: .03em; text-transform: uppercase; color: var(--muted); }
+      select.status-select { font: inherit; font-size: .9rem; color: var(--ink); background: var(--surface); border: 1px solid var(--line-strong); border-radius: 8px; padding: 7px 9px; }
+      .track-panel { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; box-shadow: var(--shadow); margin-bottom: 16px; }
+      .track-panel h3 { margin: 0 0 4px; font-size: 1.08rem; }
+      .track-panel .hint { margin: 0; font-size: .88rem; color: var(--ink-2); }
+      .track-stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 14px 0; }
+      .tstat { background: var(--surface-2); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; text-align: center; }
+      .tstat .n { font-family: "IBM Plex Mono", monospace; font-weight: 600; font-size: 1.3rem; line-height: 1; }
+      .tstat .l { font-size: .76rem; color: var(--muted); margin-top: 4px; }
+      .progress-wrap { background: var(--surface-2); border: 1px solid var(--line); border-radius: 999px; height: 12px; overflow: hidden; }
+      .progress-bar { height: 100%; background: var(--accent); border-radius: 999px; transition: width .25s ease; }
+      .progress-lbl { display: flex; justify-content: space-between; font-size: .82rem; color: var(--muted); margin: 4px 0 10px; }
+      .track-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+      .track-note { font-size: .8rem; color: var(--muted); margin: 10px 0 0; }
+      .track-msg { font-size: .86rem; margin: 8px 0 0; color: var(--accent-ink); font-weight: 500; }
+      /* ---------- Plan de acción ---------- */
+      .plan-list { list-style: none; margin: 0; padding: 0; }
+      .plan-item { display: flex; gap: 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; box-shadow: var(--shadow); }
+      .plan-item + .plan-item { margin-top: 10px; }
+      .plan-item input[type="checkbox"] { width: 22px; height: 22px; flex: none; margin-top: 2px; accent-color: var(--accent); cursor: pointer; }
+      .plan-item h3 { margin: 0 0 2px; font-size: 1rem; line-height: 1.3; }
+      .plan-item .meta { font-size: .8rem; font-weight: 700; color: var(--accent-ink); letter-spacing: .02em; }
+      .plan-item p { margin: 4px 0 0; font-size: .9rem; color: var(--ink-2); }
+      .plan-item.done h3 { text-decoration: line-through; color: var(--muted); }
+      @media (max-width: 680px) { .track-stats { grid-template-columns: repeat(2, 1fr); } }
+
       /* ---------- Cap-exempt ---------- */
       .cap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; align-items: start; }
       .cap-card {
@@ -497,6 +534,22 @@
         </div>
       </section>
 
+      <section aria-labelledby="plan">
+        <div class="sec-head">
+          <h2 id="plan">Mi plan de acción</h2>
+          <p>Tu ruta personal de F-1 a H-1B, en orden. Marca cada paso cuando lo completes: los checks se guardan junto con tu seguimiento de empresas en el mismo archivo de respaldo (botones en «Mi seguimiento», más abajo).</p>
+        </div>
+        <div class="plan-list" id="planList">
+          <div class="plan-item" data-plan-item="a"><input type="checkbox" id="plan-a" data-plan="a" aria-label="Marcar paso A como completado" /><div><h3>Hablar con el DSO de Atlantis para confirmar las reglas de CPT</h3><span class="meta">Meta: antes de marzo de 2027</span><p>Sin la autorización del DSO en tu I-20 no hay CPT válido; además, 12+ meses de CPT full-time eliminan tu OPT. Confirmar las reglas exactas de tu escuela protege todo lo demás.</p></div></div>
+          <div class="plan-item" data-plan-item="b"><input type="checkbox" id="plan-b" data-plan="b" aria-label="Marcar paso B como completado" /><div><h3>Cerrar la brecha de SQL y Python básico, más 2 proyectos de portafolio</h3><span class="meta">Meta: mediados de 2027</span><p>Es el filtro técnico más común en roles de datos e IA. Dos proyectos reales y publicables valen más que certificados sueltos cuando un reclutador revisa tu perfil.</p></div></div>
+          <div class="plan-item" data-plan-item="c"><input type="checkbox" id="plan-c" data-plan="c" aria-label="Marcar paso C como completado" /><div><h3>Aplicar a internships de verano 2027 vía CPT</h3><span class="meta">Ventana: enero a marzo de 2027</span><p>Los internships de verano se llenan meses antes. Entrar por CPT te da experiencia en EE.&nbsp;UU. dentro de F-1 y te pone en la fila de conversión a tiempo completo.</p></div></div>
+          <div class="plan-item" data-plan-item="d"><input type="checkbox" id="plan-d" data-plan="d" aria-label="Marcar paso D como completado" /><div><h3>En cada oferta, confirmar que el empleador está en E-Verify y dispuesto a firmar el Form I-983</h3><span class="meta">Meta: siempre, en cada oferta</span><p>Sin E-Verify no hay STEM OPT, y sin I-983 firmado no hay entrenamiento válido. Preguntarlo antes de aceptar evita quedarte sin los 24 meses extra.</p></div></div>
+          <div class="plan-item" data-plan-item="e"><input type="checkbox" id="plan-e" data-plan="e" aria-label="Marcar paso E como completado" /><div><h3>Solicitar el OPT</h3><span class="meta">Ventana: 90 días antes hasta 60 días después de la graduación (junio a noviembre de 2028)</span><p>Es tu autorización de 12 meses para trabajar en tu campo. Presentarlo a tiempo —y no empezar hasta tener el EAD— es lo que abre la puerta a todo lo siguiente.</p></div></div>
+          <div class="plan-item" data-plan-item="f"><input type="checkbox" id="plan-f" data-plan="f" aria-label="Marcar paso F como completado" /><div><h3>Solicitar la extensión STEM OPT</h3><span class="meta">Meta: hasta 90 días antes de que venza el OPT (alrededor de junio de 2029)</span><p>Te da 24 meses más (36 en total) y con ellos hasta 3 intentos de lotería H-1B. Perder esta ventana acorta tu ruta a la mitad.</p></div></div>
+          <div class="plan-item" data-plan-item="g"><input type="checkbox" id="plan-g" data-plan="g" aria-label="Marcar paso G como completado" /><div><h3>Registrar cada lotería H-1B: marzo de 2029, 2030 y 2031</h3><span class="meta">3 intentos — marzo de cada año</span><p>Cada registro es una oportunidad independiente de ser seleccionado. Llegar a los tres con empleo STEM OPT vigente es, en la práctica, tu plan completo.</p></div></div>
+        </div>
+      </section>
+
       <section aria-labelledby="grafico">
         <div class="chart-card">
           <h3 id="grafico">Quién presenta más: LCA en FY2025</h3>
@@ -511,6 +564,26 @@
           <h2 id="lista">Las 30 empresas (sujetas al cupo H-1B) — con marca OPT verificada</h2>
           <p>Agrupa el mercado en cinco bloques: big tech, fintech/bancos/pagos, empresas de IA y datos de tamaño medio, firmas de trading y consultoría IT. Filtra por bloque, busca por nombre o rol, o activa <b>“Solo empleadores con estudiantes STEM OPT (SEVP CY2019)”</b> para ver solo las que aparecen en el top gubernamental de empleo STEM OPT. La etiqueta verde ahora dice exactamente eso: no es una promesa de hiring hoy, es evidencia SEVP de que ya empleaban estudiantes en STEM OPT.</p>
           <p class="small">Importante: Capital One ya <b>no</b> lleva la etiqueta OPT. En el puesto revisado en su página oficial vigente se excluye apoyo para F-1 OPT/STEM OPT/CPT (“at this time / for this position”); sigue en la lista solo por su historial H-1B, no como evidencia de una política OPT de empresa. Cómo se ordenan por defecto: por volumen de LCA. Las cifras mezclan FY2025 y, donde se marca, FY2024 o acumulados — cada tarjeta dice el período exacto.</p>
+        </div>
+
+        <div class="track-panel" id="trackPanel" aria-label="Mi seguimiento de aplicaciones">
+          <h3>Mi seguimiento</h3>
+          <p class="hint">Marca el estado de cada empresa en su tarjeta y aquí ves tu avance. El filtro de abajo se combina con la búsqueda y los bloques.</p>
+          <div class="track-stats" id="trackStats" aria-live="polite"></div>
+          <div class="progress-lbl"><span>Avance (aplicadas + en proceso + ofertas)</span><span id="trackPct">0 de 30</span></div>
+          <div class="progress-wrap" role="progressbar" aria-label="Progreso de aplicaciones" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="trackBarWrap"><div class="progress-bar" id="trackBar" style="width:0%"></div></div>
+          <div class="chips" role="group" aria-label="Filtrar por mi estado" style="margin-top:12px">
+            <button type="button" class="chip" data-tf="all" aria-pressed="true">Todas</button>
+            <button type="button" class="chip" data-tf="applied" aria-pressed="false">Aplicadas</button>
+            <button type="button" class="chip" data-tf="process" aria-pressed="false">En proceso</button>
+          </div>
+          <div class="track-actions">
+            <button type="button" class="btn" id="btnSave">Guardar mi progreso</button>
+            <button type="button" class="btn ghost" id="btnLoad">Cargar mi progreso</button>
+            <input type="file" id="fileInput" accept=".json,application/json" hidden aria-label="Elegir archivo de progreso" />
+          </div>
+          <p class="track-note">Esta página no guarda datos por sí sola: al cerrar la pestaña, los estados y checks se pierden. El archivo que descargas con «Guardar mi progreso» es tu copia de seguridad — y te sirve para pasar tu progreso del teléfono al computador con «Cargar mi progreso».</p>
+          <p class="track-msg" id="trackMsg" aria-live="polite"></p>
         </div>
 
         <div class="controls" role="region" aria-label="Filtros de la lista">
@@ -922,6 +995,52 @@
         "IBM": true, "Deloitte Consulting": true, "Goldman Sachs": true, "JPMorgan Chase": true, "Citibank": true
       };
 
+      /* Enlaces oficiales verificados el 8-oct-2026: cada URL se abrió y resolvió a la página real de careers (y de estudiantes, donde existe una separada). */
+      var CAREER_LINKS = {
+        "Amazon": { careers: "https://www.amazon.jobs", students: "https://www.amazon.jobs/en/teams/internships-for-students" },
+        "Microsoft": { careers: "https://careers.microsoft.com" },
+        "Google": { careers: "https://www.google.com/about/careers/applications/", students: "https://www.google.com/about/careers/applications/students/" },
+        "Apple": { careers: "https://jobs.apple.com", students: "https://www.apple.com/careers/us/students.html" },
+        "Meta": { careers: "https://www.metacareers.com" },
+        "Deloitte Consulting": { careers: "https://www.deloitte.com/us/en/careers.html" },
+        "IBM": { careers: "https://www.ibm.com/careers" },
+        "Accenture": { careers: "https://www.accenture.com/us-en/careers" },
+        "JPMorgan Chase": { careers: "https://careers.jpmorgan.com", students: "https://careers.jpmorgan.com/us/en/students" },
+        "NVIDIA": { careers: "https://www.nvidia.com/en-us/about-nvidia/careers/" },
+        "Citibank": { careers: "https://jobs.citi.com" },
+        "Goldman Sachs": { careers: "https://www.goldmansachs.com/careers", students: "https://www.goldmansachs.com/careers/students" },
+        "Oracle": { careers: "https://www.oracle.com/careers/", students: "https://www.oracle.com/careers/students-grads/" },
+        "PayPal": { careers: "https://careers.pypl.com/" },
+        "Morgan Stanley": { careers: "https://www.morganstanley.com/careers", students: "https://www.morganstanley.com/people/students-graduates" },
+        "Capital One": { careers: "https://www.capitalonecareers.com" },
+        "Wells Fargo": { careers: "https://www.wellsfargo.com/about/careers/" },
+        "Databricks": { careers: "https://www.databricks.com/company/careers" },
+        "Stripe": { careers: "https://stripe.com/jobs", students: "https://stripe.com/jobs/university" },
+        "Mastercard": { careers: "https://careers.mastercard.com" },
+        "American Express": { careers: "https://www.americanexpress.com/en-us/careers/" },
+        "Two Sigma": { careers: "https://www.twosigma.com/careers/" },
+        "OpenAI": { careers: "https://openai.com/careers/" },
+        "Anthropic": { careers: "https://www.anthropic.com/careers" },
+        "Snowflake": { careers: "https://careers.snowflake.com" },
+        "Palantir": { careers: "https://www.palantir.com/careers/" },
+        "Jane Street": { careers: "https://www.janestreet.com/join-jane-street/" },
+        "Citadel": { careers: "https://www.citadel.com/careers/", students: "https://www.citadel.com/careers/students/" },
+        "Hudson River Trading": { careers: "https://www.hudsonrivertrading.com/careers/" },
+        "Cognizant": { careers: "https://careers.cognizant.com" }
+      };
+
+      var TRACK_STATES = [
+        { k: "por-aplicar", label: "Por aplicar" },
+        { k: "aplicada", label: "Aplicada" },
+        { k: "en-proceso", label: "En proceso" },
+        { k: "oferta", label: "Oferta" },
+        { k: "descartada", label: "Descartada" }
+      ];
+      var track = {};
+      var planChecks = {};
+      var trackFilter = "all";
+      function getState(name) { return track[name] || "por-aplicar"; }
+
       var CAP_EXEMPT = [
         { name: "MIT", big: "286", what: "LCA en FY2025 · 170 I-129 (168 aprobadas)",
           p: "Salario mediano LCA 2025: <b>$156,200</b>. Personal de investigación e ingenieros de IS&T. Entre FY2022–FY2024 sumó 707 LCA.",
@@ -1000,6 +1119,15 @@
         if (allFlags.length) {
           h += '<div class="flags">' + allFlags.map(function (f) { return '<span class="flag ' + f.t + '">' + esc(f.txt) + '</span>'; }).join("") + '</div>';
         }
+        var links = CAREER_LINKS[c.name];
+        if (links) {
+          h += '<div class="actions"><a class="btn" href="' + links.careers + '" target="_blank" rel="noopener">Ver vacantes (Careers) ↗</a>';
+          if (links.students) h += '<a class="btn ghost" href="' + links.students + '" target="_blank" rel="noopener">Internships / Estudiantes ↗</a>';
+          h += '</div>';
+        }
+        var cur = getState(c.name);
+        h += '<div class="track-row"><label for="st-' + esc(c.name).replace(/\s+/g, "-") + '">Mi estado</label><select class="status-select" id="st-' + esc(c.name).replace(/\s+/g, "-") + '" data-co="' + esc(c.name) + '" aria-label="Mi estado en ' + esc(c.name) + '">' +
+          TRACK_STATES.map(function (s) { return '<option value="' + s.k + '"' + (cur === s.k ? ' selected' : '') + '>' + s.label + '</option>'; }).join("") + '</select></div>';
         h += '<p class="src">Fuente: ' + c.src.map(function (s) { return '<a href="' + s[1] + '" target="_blank" rel="noopener">' + esc(s[0]) + '</a>'; }).join(" · ") + '</p>';
         h += '</article>';
         return h;
@@ -1010,6 +1138,8 @@
         var list = COMPANIES.filter(function (c) {
           if (state.cat !== "all" && c.cat !== state.cat) return false;
           if (state.optOnly && !OPT_SET[c.name]) return false;
+          if (trackFilter === "applied" && getState(c.name) !== "aplicada") return false;
+          if (trackFilter === "process" && getState(c.name) !== "en-proceso") return false;
           if (!q) return true;
           var hay = (c.name + " " + c.legal + " " + (c.roles || []).join(" ") + " " + c.signal).toLowerCase();
           return hay.indexOf(q) !== -1;
@@ -1028,12 +1158,95 @@
           return b.lca - a.lca;
         });
         grid.innerHTML = list.map(cardHTML).join("");
+        grid.querySelectorAll(".status-select").forEach(function (sel) {
+          sel.addEventListener("change", function () {
+            track[sel.getAttribute("data-co")] = sel.value;
+            updateTrackPanel();
+          });
+        });
+        updateTrackPanel();
         emptyBox.hidden = list.length !== 0;
         var catTxt = state.cat === "all" ? "todos los bloques" : CATS[state.cat].label;
         countLine.innerHTML = "Mostrando <strong>" + list.length + " de " + COMPANIES.length + " empresas</strong> · " + esc(catTxt) +
           (state.optOnly ? " · solo en top STEM OPT SEVP CY2019" : "") +
           (q ? ' · búsqueda: «' + esc(state.q.trim()) + '»' : "") + " · datos H-1B observados el 5-oct-2026 · OPT verificado el 6-oct-2026 (SEVP CY2019 + páginas oficiales)";
       }
+
+      /* ---------- Mi seguimiento: panel, guardar/cargar ---------- */
+      var trackStatsEl = document.getElementById("trackStats");
+      var trackBarEl = document.getElementById("trackBar");
+      var trackBarWrap = document.getElementById("trackBarWrap");
+      var trackPctEl = document.getElementById("trackPct");
+      var trackMsgEl = document.getElementById("trackMsg");
+      function updateTrackPanel() {
+        var counts = { "por-aplicar": 0, "aplicada": 0, "en-proceso": 0, "oferta": 0, "descartada": 0 };
+        COMPANIES.forEach(function (c) { counts[getState(c.name)]++; });
+        if (trackStatsEl) {
+          trackStatsEl.innerHTML = TRACK_STATES.map(function (s) {
+            return '<div class="tstat"><div class="n">' + counts[s.k] + '</div><div class="l">' + esc(s.label) + '</div></div>';
+          }).join("");
+        }
+        var done = counts["aplicada"] + counts["en-proceso"] + counts["oferta"];
+        var pct = COMPANIES.length ? Math.round((done / COMPANIES.length) * 100) : 0;
+        if (trackBarEl) trackBarEl.style.width = pct + "%";
+        if (trackBarWrap) trackBarWrap.setAttribute("aria-valuenow", String(pct));
+        if (trackPctEl) trackPctEl.textContent = done + " de " + COMPANIES.length + " (" + pct + "%)";
+      }
+      function syncPlanUI() {
+        document.querySelectorAll("[data-plan]").forEach(function (box) {
+          var key = box.getAttribute("data-plan");
+          box.checked = !!planChecks[key];
+          var item = box.closest(".plan-item");
+          if (item) item.classList.toggle("done", !!planChecks[key]);
+        });
+      }
+      document.querySelectorAll("[data-plan]").forEach(function (box) {
+        box.addEventListener("change", function () {
+          planChecks[box.getAttribute("data-plan")] = box.checked;
+          syncPlanUI();
+        });
+      });
+      document.querySelectorAll("[data-tf]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          trackFilter = btn.getAttribute("data-tf");
+          document.querySelectorAll("[data-tf]").forEach(function (b) { b.setAttribute("aria-pressed", b === btn ? "true" : "false"); });
+          render();
+        });
+      });
+      var btnSave = document.getElementById("btnSave");
+      var btnLoad = document.getElementById("btnLoad");
+      var fileInput = document.getElementById("fileInput");
+      if (btnSave) btnSave.addEventListener("click", function () {
+        var payload = { version: 1, savedAt: new Date().toISOString(), states: track, plan: planChecks };
+        var blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement("a");
+        a.href = url; a.download = "mi-progreso-h1b.json";
+        document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+        if (trackMsgEl) trackMsgEl.textContent = "Progreso guardado en mi-progreso-h1b.json. Guárdalo donde puedas encontrarlo.";
+      });
+      if (btnLoad && fileInput) btnLoad.addEventListener("click", function () { fileInput.click(); });
+      if (fileInput) fileInput.addEventListener("change", function () {
+        var file = fileInput.files && fileInput.files[0];
+        if (!file) return;
+        var reader = new FileReader();
+        reader.onload = function () {
+          try {
+            var data = JSON.parse(String(reader.result || ""));
+            if (!data || typeof data !== "object") throw new Error("formato");
+            track = (data.states && typeof data.states === "object") ? data.states : {};
+            planChecks = (data.plan && typeof data.plan === "object") ? data.plan : {};
+            syncPlanUI();
+            render();
+            if (trackMsgEl) trackMsgEl.textContent = "Progreso cargado: " + Object.keys(track).length + " estados y " + Object.keys(planChecks).filter(function (k) { return planChecks[k]; }).length + " pasos del plan marcados.";
+          } catch (err) {
+            if (trackMsgEl) trackMsgEl.textContent = "No se pudo leer ese archivo. Elige el JSON que descargaste con «Guardar mi progreso».";
+          }
+          fileInput.value = "";
+        };
+        reader.readAsText(file);
+      });
 
       /* Chips de categoría */
       var chipsBox = document.getElementById("chips");
