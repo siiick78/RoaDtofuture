@@ -1,0 +1,1085 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>Empresas con historial real de sponsorship H-1B</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,650;0,6..72,800;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #f4f6f4;
+        --surface: #ffffff;
+        --surface-2: #eef1ee;
+        --ink: #15212b;
+        --ink-2: #3d4f5e;
+        --muted: #67798a;
+        --line: #d9e0da;
+        --line-strong: #bcc9bf;
+        --accent: #0d6e4a;
+        --accent-ink: #0a5a3d;
+        --accent-soft: #e2f1e8;
+        --warn: #8a5a00;
+        --warn-soft: #fbf0d3;
+        --danger: #a1261c;
+        --danger-soft: #fbe7e3;
+        --cat-bigtech: #2f5d8a;
+        --cat-fintech: #0e7490;
+        --cat-ai: #0d6e4a;
+        --cat-trading: #9a6a12;
+        --cat-consult: #6d5c43;
+        --cat-cap: #7c2d3e;
+        --shadow: 0 1px 2px rgba(21,33,43,.05), 0 8px 24px -12px rgba(21,33,43,.18);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0d141a;
+          --surface: #15212b;
+          --surface-2: #1b2a36;
+          --ink: #e9eff3;
+          --ink-2: #b8c7d2;
+          --muted: #8fa3b2;
+          --line: #26363f;
+          --line-strong: #38505f;
+          --accent: #3ec98f;
+          --accent-ink: #6fdcae;
+          --accent-soft: #123527;
+          --warn: #e5b95c;
+          --warn-soft: #3a2c10;
+          --danger: #f0937f;
+          --danger-soft: #3d1d18;
+          --cat-bigtech: #7fb0dd;
+          --cat-fintech: #5cc6de;
+          --cat-ai: #3ec98f;
+          --cat-trading: #e5b95c;
+          --cat-consult: #c4ab85;
+          --cat-cap: #e08ba0;
+          --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 28px -14px rgba(0,0,0,.6);
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "IBM Plex Sans", system-ui, sans-serif;
+        font-size: 16px;
+        line-height: 1.55;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
+      a { color: var(--accent-ink); }
+      a:hover { text-decoration-thickness: 2px; }
+
+      /* ---------- Hero ---------- */
+      .hero { padding: 44px 0 8px; }
+      .hero h1 {
+        font-family: "Newsreader", Georgia, serif;
+        font-weight: 800;
+        font-size: clamp(2rem, 5.2vw, 3.4rem);
+        line-height: 1.04;
+        letter-spacing: -0.01em;
+        margin: 0 0 14px;
+        max-width: 19ch;
+      }
+      .hero h1 em { font-style: italic; font-weight: 500; color: var(--accent-ink); }
+      .hero .lede { font-size: 1.13rem; color: var(--ink-2); max-width: 62ch; margin: 0 0 10px; }
+      .hero .dateline { font-size: .86rem; color: var(--muted); margin: 0; }
+      .hero .dateline strong { color: var(--ink-2); font-weight: 600; }
+
+      .stat-strip {
+        display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+        margin: 26px 0 6px;
+      }
+      .stat {
+        background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+        padding: 14px 16px 12px; box-shadow: var(--shadow);
+      }
+      .stat .n { font-family: "IBM Plex Mono", monospace; font-weight: 600; font-size: 1.55rem; line-height: 1; color: var(--ink); }
+      .stat .l { font-size: .82rem; color: var(--muted); margin-top: 6px; line-height: 1.35; }
+
+      /* ---------- Context alerts ---------- */
+      .context { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 22px 0 4px; }
+      .alert {
+        border-radius: 10px; padding: 16px 18px; border: 1px solid var(--line);
+        background: var(--surface); box-shadow: var(--shadow);
+      }
+      .alert.good { border-left: 4px solid var(--accent); }
+      .alert.change { border-left: 4px solid var(--warn); }
+      .alert h3 { margin: 0 0 6px; font-size: 1rem; font-weight: 700; }
+      .alert p { margin: 0; font-size: .92rem; color: var(--ink-2); }
+      .alert p + p { margin-top: 6px; }
+      .alert .tagline { font-size: .78rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+      .alert.good .tagline { color: var(--accent-ink); }
+      .alert.change .tagline { color: var(--warn); }
+
+      /* ---------- Section heads ---------- */
+      section { margin-top: 44px; }
+      .sec-head { margin-bottom: 16px; }
+      .sec-head h2 {
+        font-family: "Newsreader", Georgia, serif; font-weight: 700;
+        font-size: clamp(1.5rem, 3.4vw, 2rem); line-height: 1.1; margin: 0 0 6px;
+      }
+      .sec-head p { margin: 0; color: var(--ink-2); max-width: 68ch; }
+      .sec-head p.small { font-size: .88rem; color: var(--muted); margin-top: 6px; }
+
+      /* ---------- Glossary ---------- */
+      .glossary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+      .gloss {
+        background: var(--surface-2); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px;
+      }
+      .gloss .term { font-family: "IBM Plex Mono", monospace; font-weight: 600; font-size: .95rem; margin-bottom: 4px; }
+      .gloss p { margin: 0; font-size: .88rem; color: var(--ink-2); }
+
+      /* ---------- OPT section ---------- */
+      .opt-timeline { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 14px; }
+      .opt-step {
+        background: var(--surface); border: 1px solid var(--line); border-top: 3px solid var(--accent);
+        border-radius: 10px; padding: 16px 18px; box-shadow: var(--shadow);
+      }
+      .opt-step .when { font-size: .78rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--accent-ink); }
+      .opt-step h3 { margin: 4px 0 6px; font-size: 1.05rem; }
+      .opt-step p { margin: 0; font-size: .9rem; color: var(--ink-2); }
+      .opt-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; align-items: start; }
+      .opt-card {
+        background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+        padding: 16px 18px; box-shadow: var(--shadow);
+      }
+      .opt-card h3 { margin: 0 0 2px; font-size: 1.05rem; }
+      .opt-card .nums { font-family: "IBM Plex Mono", monospace; font-weight: 600; font-size: .95rem; color: var(--ink); margin: 6px 0 2px; }
+      .opt-card .what { font-size: .82rem; color: var(--muted); }
+      .opt-card p { font-size: .88rem; color: var(--ink-2); margin: 8px 0 0; }
+      .opt-card .src { margin-top: 12px; }
+      .opt-note {
+        background: var(--accent-soft); border: 1px solid var(--line); border-radius: 10px;
+        padding: 14px 16px; font-size: .9rem; color: var(--ink-2); margin-top: 12px;
+      }
+      .opt-note b { color: var(--ink); }
+      .cfg { background: color-mix(in srgb, var(--surface) 92%, var(--accent-soft) 8%); border:1px solid var(--line); border-radius:10px; padding:14px 16px; margin-top:12px; }
+      .cfg blockquote { margin:6px 0 6px; padding-left:12px; border-left:3px solid var(--accent); color:var(--ink-2); font-size:.92rem; line-height:1.45; }
+      .cfg .lbl { font-size:.72rem; letter-spacing:.07em; text-transform:uppercase; font-weight:700; color:var(--accent-ink); }
+      .neg-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; align-items:start; }
+      .neg-card { background:var(--surface); border:1px solid var(--line); border-top:3px solid var(--danger); border-radius:10px; padding:16px 18px; box-shadow:var(--shadow); }
+      .neg-card h3{margin:0 0 4px;font-size:1.02rem}
+      .neg-card p{font-size:.88rem;color:var(--ink-2);margin:8px 0 0}
+      .neg-card blockquote{margin:6px 0; padding-left:10px; border-left:3px solid var(--danger); font-size:.85rem; color:var(--ink-2)}
+      @media (max-width:900px){ .neg-grid{grid-template-columns:1fr 1fr} }
+      @media (max-width:680px){ .neg-grid{grid-template-columns:1fr} }
+      .method { background:var(--warn-soft); border:1px solid var(--line); border-radius:10px; padding:14px 16px; font-size:.88rem; color:var(--ink-2); margin-top:12px; }
+      @media (max-width: 900px) { .opt-grid { grid-template-columns: 1fr 1fr; } .opt-timeline { grid-template-columns: 1fr; } }
+      @media (max-width: 680px) { .opt-grid { grid-template-columns: 1fr; } }
+
+      /* ---------- Chart ---------- */
+      .chart-card {
+        background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+        padding: 18px 20px 10px; box-shadow: var(--shadow);
+      }
+      .chart-card h3 { margin: 0 0 2px; font-size: 1rem; font-weight: 700; }
+      .chart-card .sub { font-size: .85rem; color: var(--muted); margin: 0 0 10px; }
+      .chart-card svg { width: 100%; height: auto; display: block; }
+      .chart-note { font-size: .8rem; color: var(--muted); margin: 8px 0 6px; }
+
+      /* ---------- Controls ---------- */
+      .controls {
+        position: sticky; top: 0; z-index: 20;
+        background: color-mix(in srgb, var(--bg) 88%, transparent);
+        backdrop-filter: blur(10px);
+        padding: 14px 0 10px; margin: 0 -20px; padding-left: 20px; padding-right: 20px;
+        border-bottom: 1px solid var(--line);
+      }
+      .controls .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+      .search {
+        flex: 1 1 220px; display: flex; align-items: center; gap: 8px;
+        background: var(--surface); border: 1px solid var(--line-strong); border-radius: 8px; padding: 0 12px;
+      }
+      .search svg { flex: none; color: var(--muted); }
+      .search input {
+        border: 0; outline: 0; background: transparent; color: var(--ink);
+        font: inherit; font-size: .95rem; padding: 9px 0; width: 100%;
+      }
+      .search input::placeholder { color: var(--muted); }
+      select.sort {
+        font: inherit; font-size: .9rem; color: var(--ink);
+        background: var(--surface); border: 1px solid var(--line-strong); border-radius: 8px; padding: 9px 10px;
+      }
+      .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+      .chip {
+        font: inherit; font-size: .86rem; font-weight: 500; cursor: pointer;
+        background: var(--surface); color: var(--ink-2);
+        border: 1px solid var(--line-strong); border-radius: 999px; padding: 6px 13px;
+        display: inline-flex; align-items: center; gap: 7px;
+      }
+      .chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); flex: none; }
+      .chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+      .chip[aria-pressed="true"] .dot { background: var(--bg); }
+      .count-line { font-size: .86rem; color: var(--muted); margin: 12px 0 0; }
+      .count-line strong { color: var(--ink); }
+
+      /* ---------- Company cards ---------- */
+      .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: start; }
+      .card {
+        background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+        padding: 18px 20px; box-shadow: var(--shadow);
+      }
+      .card[hidden] { display: none; }
+      .card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+      .card h3 { margin: 0; font-size: 1.22rem; font-weight: 700; line-height: 1.2; }
+      .card .legal { font-size: .8rem; color: var(--muted); margin-top: 2px; }
+      .cat {
+        flex: none; font-size: .72rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+        display: inline-flex; align-items: center; gap: 6px; padding: 4px 9px; border-radius: 999px;
+        background: var(--surface-2); color: var(--ink-2); border: 1px solid var(--line);
+      }
+      .cat .dot { width: 7px; height: 7px; border-radius: 50%; }
+      .metric { margin: 14px 0 2px; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+      .metric .big { font-family: "IBM Plex Mono", monospace; font-weight: 600; font-size: 1.9rem; line-height: 1; }
+      .metric .what { font-size: .85rem; color: var(--muted); }
+      .substats { font-size: .9rem; color: var(--ink-2); margin: 6px 0 0; }
+      .substats b { color: var(--ink); font-weight: 600; }
+      .salary { font-size: .9rem; margin: 4px 0 0; color: var(--ink-2); }
+      .salary b { font-family: "IBM Plex Mono", monospace; font-weight: 600; color: var(--ink); }
+      .roles { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 0; padding: 0; list-style: none; }
+      .roles li {
+        font-size: .78rem; font-weight: 500; background: var(--surface-2); color: var(--ink-2);
+        border: 1px solid var(--line); border-radius: 6px; padding: 3px 8px;
+      }
+      .signal { font-size: .92rem; color: var(--ink-2); margin: 12px 0 0; }
+      .signal .lbl { font-weight: 700; color: var(--ink); font-size: .78rem; letter-spacing: .04em; text-transform: uppercase; display: block; margin-bottom: 2px; }
+      .flags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+      .flag {
+        font-size: .78rem; font-weight: 600; border-radius: 6px; padding: 4px 9px;
+        display: inline-flex; align-items: center; gap: 6px;
+      }
+      .flag.good { background: var(--accent-soft); color: var(--accent-ink); }
+      .flag.warn { background: var(--warn-soft); color: var(--warn); }
+      .flag.danger { background: var(--danger-soft); color: var(--danger); }
+      .src { margin: 14px 0 0; padding-top: 10px; border-top: 1px solid var(--line); font-size: .8rem; color: var(--muted); }
+      .src a { font-weight: 500; }
+
+      .empty {
+        border: 1px dashed var(--line-strong); border-radius: 12px; padding: 34px 20px;
+        text-align: center; color: var(--muted); background: var(--surface);
+      }
+      .empty[hidden] { display: none; }
+
+      /* ---------- Cap-exempt ---------- */
+      .cap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; align-items: start; }
+      .cap-card {
+        background: var(--surface); border: 1px solid var(--line); border-top: 3px solid var(--cat-cap);
+        border-radius: 10px; padding: 16px 18px; box-shadow: var(--shadow);
+      }
+      .cap-card h3 { margin: 0 0 4px; font-size: 1.05rem; }
+      .cap-card .big { font-family: "IBM Plex Mono", monospace; font-weight: 600; font-size: 1.35rem; }
+      .cap-card .what { font-size: .8rem; color: var(--muted); }
+      .cap-card p { font-size: .88rem; color: var(--ink-2); margin: 8px 0 0; }
+      .cap-card .src { margin-top: 12px; }
+
+      /* ---------- Checklist / caveats ---------- */
+      .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: start; }
+      .panel {
+        background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+        padding: 20px 22px; box-shadow: var(--shadow);
+      }
+      .panel h3 { margin: 0 0 12px; font-size: 1.05rem; font-weight: 700; }
+      .steps { list-style: none; margin: 0; padding: 0; counter-reset: step; }
+      .steps li { display: flex; gap: 12px; padding: 10px 0; border-top: 1px solid var(--line); }
+      .steps li:first-child { border-top: 0; padding-top: 0; }
+      .steps .num {
+        counter-increment: step; flex: none; width: 26px; height: 26px; border-radius: 50%;
+        background: var(--accent-soft); color: var(--accent-ink);
+        font-family: "IBM Plex Mono", monospace; font-weight: 600; font-size: .85rem;
+        display: grid; place-items: center; margin-top: 1px;
+      }
+      .steps .num::before { content: counter(step); }
+      .steps p { margin: 0; font-size: .92rem; color: var(--ink-2); }
+      .steps p b { color: var(--ink); }
+      .caveat-list { list-style: none; margin: 0; padding: 0; }
+      .caveat-list li { padding: 10px 0; border-top: 1px solid var(--line); font-size: .92rem; color: var(--ink-2); }
+      .caveat-list li:first-child { border-top: 0; padding-top: 0; }
+      .caveat-list b { color: var(--ink); }
+
+      footer { margin: 52px 0 40px; border-top: 1px solid var(--line); padding-top: 20px; }
+      footer h2 { font-family: "Newsreader", Georgia, serif; font-size: 1.3rem; margin: 0 0 10px; }
+      footer p, footer li { font-size: .86rem; color: var(--muted); }
+      footer ul { margin: 8px 0 0; padding-left: 18px; }
+      footer li { margin: 3px 0; }
+
+      @media (max-width: 900px) {
+        .stat-strip { grid-template-columns: repeat(2, 1fr); }
+        .glossary { grid-template-columns: 1fr; }
+        .cap-grid { grid-template-columns: 1fr 1fr; }
+      }
+      @media (max-width: 680px) {
+        .context, .grid, .two-col { grid-template-columns: 1fr; }
+        .cap-grid { grid-template-columns: 1fr; }
+        .hero { padding-top: 30px; }
+        .metric .big { font-size: 1.6rem; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+
+      <header class="hero">
+        <h1>Empresas que <em>sí</em> patrocinan H-1B, con los números en la mano</h1>
+        <p class="lede">Nada de promesas de marketing: esta lista se armó con registros reales de peticiones — las LCA que cada empresa presenta ante el Departamento de Trabajo (DOL) y las peticiones I-129 ante USCIS — en roles de IA, datos, ingeniería de software y fintech. Ahora incluye también el apartado que faltaba: <strong>empresas que contratan en OPT</strong>, verificado contra fuentes primarias (páginas oficiales de las propias empresas y datos SEVP/ICE), no agregadores.</p>
+        <p class="dateline">Investigación web realizada el <strong>5 de octubre de 2026</strong> · Actualización OPT verificada: <strong>6 de octubre de 2026</strong> · Datos FY2024–FY2025 (año fiscal: 1 oct – 30 sep) · Fuentes: páginas oficiales de empresas, SEVP “SEVIS by the Numbers” (ICE), USCIS, MyVisaJobs (agrega DOL/USCIS), h1bdata.info y NFAP</p>
+
+        <div class="stat-strip">
+          <div class="stat"><div class="n">30</div><div class="l">empresas sujetas al cupo (cap) con volumen verificado de peticiones</div></div>
+          <div class="stat"><div class="n">6</div><div class="l">empleadores cap-exempt: pueden patrocinar sin pasar por la lotería</div></div>
+          <div class="stat"><div class="n">406,348</div><div class="l">peticiones H-1B aprobadas por USCIS en FY2025 en todo el programa</div></div>
+          <div class="stat"><div class="n">2.8%</div><div class="l">tasa de negación FY2025 en peticiones de empleo inicial (nuevas contrataciones)</div></div>
+        </div>
+      </header>
+
+      <div class="context">
+        <div class="alert good">
+          <p class="tagline">El fee de $100,000</p>
+          <h3>Hoy está bloqueado por las cortes federales</h3>
+          <p>La proclamación de septiembre de 2025 impuso un pago de $100,000 por petición nueva. El 8 de junio de 2026 una corte de Massachusetts anuló su implementación, y el 30 de septiembre de 2026 una corte de California (caso <i>Global Nurse Force v. Trump</i>) anuló también las políticas y su extensión de septiembre de 2026. <b>Al 1–5 de octubre de 2026, las empresas que presentan peticiones no están pagando ese fee.</b></p>
+          <p>Ojo: el gobierno puede apelar y hay otra propuesta de fee de $103,265 en trámite regulatorio (todavía no vigente). El panorama puede cambiar. <a href="https://www.ellis.com/resources/h1b-100k-fee-blocked-california" target="_blank" rel="noopener">Ellis — estado del bloqueo</a> · <a href="https://usimmigration.today/news/a-second-court-vacates-the-100000-h-1b-fee-policies-and-this-ruling-also-covers-the-september-2026-renewal/" target="_blank" rel="noopener">Segunda corte anula el fee</a></p>
+        </div>
+        <div class="alert change">
+          <p class="tagline">La lotería cambia en FY2027</p>
+          <h3>La selección ahora pondera por nivel salarial</h3>
+          <p>Confirmado para el registro FY2027 (no FY2026): USCIS asigna participaciones según 4 niveles de salario prevaleciente — <b>el nivel salarial más alto recibe 4 participaciones en el sorteo</b>. En la práctica, las empresas que presentan salarios altos (labs de IA, trading, big tech bien pago) parten con ventaja estructural, y las peticiones de salario bajo, con desventaja.</p>
+          <p>Por eso en cada tarjeta verás el salario típico observado cuando el dato existe: es una señal directa de competitividad en la nueva lotería. <a href="https://www.tryalma.com/learn/fy2027-h1b-registration-dates-timeline" target="_blank" rel="noopener">Alma — calendario y reglas FY2027</a></p>
+        </div>
+      </div>
+
+      <section aria-labelledby="leer-numeros">
+        <div class="sec-head">
+          <h2 id="leer-numeros">Cómo leer estos números</h2>
+          <p>Tres siglas explican casi todo el historial de una empresa. La que más te importa como candidato nuevo es <b>empleo inicial</b>: contrataciones nuevas, no renovaciones.</p>
+        </div>
+        <div class="glossary">
+          <div class="gloss">
+            <div class="term">LCA</div>
+            <p><b>Labor Condition Application.</b> El formulario que la empresa presenta ante el DOL declarando el puesto, el salario y la ciudad. Es el primer paso obligatorio antes de patrocinar. Muchas LCA = la empresa patrocina seguido. No es todavía la visa.</p>
+          </div>
+          <div class="gloss">
+            <div class="term">I-129</div>
+            <p><b>La petición formal ante USCIS.</b> Cuando ves “I-129 (X aprobadas)”, eso ya son peticiones de visa resueltas. Ojo: la mayoría del volumen en empresas grandes son <b>extensiones</b> de gente que ya está adentro, no contrataciones nuevas.</p>
+          </div>
+          <div class="gloss">
+            <div class="term">Empleo inicial</div>
+            <p><b>Contrataciones nuevas aprobadas</b> (dato NFAP/USCIS). Es el número más honesto para medir cuánta gente nueva entra por sponsorship en esa empresa cada año.</p>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="opt">
+        <div class="sec-head">
+          <h2 id="opt">Empresas que contratan en OPT: qué se pudo verificar (y qué no)</h2>
+          <p>El H-1B no es el primer paso. Para un F-1, el camino normal es <b>OPT → STEM OPT → H-1B</b>. En OPT el empleador <b>no te patrocina</b> al inicio: tú ya traes la autorización (EAD). Por eso el filtro real no es “¿contrata OPT?” en un agregador, sino: (1) ¿emplea ya a gente en OPT/STEM OPT según el gobierno?, (2) ¿su propia página lo confirma o lo descarta?, y (3) ¿después presenta H-1B para que la ruta no se corte a los 36 meses?</p>
+          <p class="small">Revisión del 6-oct-2026 contra fuentes primarias. Regla que usé: solo cuenta como “positivo” lo que dice la <b>propia empresa</b> en su sitio oficial o lo que muestran <b>datos SEVP/ICE</b>. Todo lo que salía solo en agregadores tipo “top OPT-friendly employers” sin respaldo oficial se sacó de la lista verificada o se marcó como no verificado. SEVP no publica una tabla pública única y en tiempo real de empleadores OPT; lo verificable son sus top-25 dentro del reporte anual “SEVIS by the Numbers”.</p>
+        </div>
+
+        <div class="opt-timeline" aria-label="Línea de tiempo OPT para un graduado STEM">
+          <div class="opt-step">
+            <div class="when">Durante el máster</div>
+            <h3>CPT — prácticas mientras estudias</h3>
+            <p>Autorizado por tu DSO en el I-20, relacionado con tu programa. Dato clave oficial: <b>12+ meses de CPT full-time</b> en el mismo nivel elimina tu elegibilidad para OPT (USCIS Policy Manual, Vol. 2, Part F, Ch. 5). Es la vía de “trabajo en 6–12 meses” sin salir de F-1.</p>
+          </div>
+          <div class="opt-step">
+            <div class="when">Al graduarte · ej. sept. 2028</div>
+            <h3>OPT — 12 meses</h3>
+            <p>Trabajo directamente relacionado con tu grado. Aplicas hasta <b>90 días antes</b> y máximo <b>60 días después</b> del programa (I-765 dentro de 30 días de la recomendación del DSO). No puedes empezar hasta tener el EAD de USCIS. Reloj oficial: <b>máx. 90 días</b> de desempleo en este período.</p>
+          </div>
+          <div class="opt-step">
+            <div class="when">Si tu grado es STEM</div>
+            <h3>STEM OPT — +24 meses (total 36)</h3>
+            <p>Tu CIP 11.0102 está en la lista STEM del DHS. Exige empleador en <b>E-Verify</b> (con EIN válido), plan <b>Form I-983</b> firmado, relación empleador-empleado bona fide, trabajo <b>pagado ≥20 h/sem</b> y reporte de terminación al DSO en 5 días hábiles. Desempleo total: <b>150 días</b> (90 + 60). Esos 36 meses = hasta <b>3 intentos de lotería H-1B</b>.</p>
+          </div>
+        </div>
+
+        <div class="glossary" style="margin-bottom:14px">
+          <div class="gloss">
+            <div class="term">Qué SÍ prueba una señal positiva</div>
+            <p>Que la empresa <b>considera</b> candidatos OPT/STEM OPT o ya emplea a estudiantes así. No prueba garantía de oferta ni de sponsorship H-1B posterior. Ejemplo fuerte abajo: Duolingo pregunta explícitamente por OPT y por la extensión de 24 meses en su application oficial.</p>
+          </div>
+          <div class="gloss">
+            <div class="term">Qué NO prueba un conteo SEVP</div>
+            <p>SEVP cuenta estudiantes que <b>reportaron</b> trabajar para ese empleador. Incluye consultoras/staffing (Integra, Populus, Randstad, AZTech, Veridic, Marlabs aparecen como “empleador” aunque el trabajo real sea en cliente). Nombres autodeclarados; no es una política de hiring.</p>
+          </div>
+          <div class="gloss">
+            <div class="term">Banderas rojas en la oferta</div>
+            <p>Frases tipo “must be authorized without sponsorship”, “No OPT/CPT”, pedirte dinero, no dar offer letter, o tardar el I-983. Y ojo con las negativas verificadas abajo: hay empresas de esta misma lista H-1B que hoy descartan OPT en sus postings.</p>
+          </div>
+        </div>
+
+        <div class="cfg" role="note" aria-label="Cómo leer las tarjetas OPT">
+          <span class="lbl">Cómo usar esta sección</span>
+          <p style="margin:6px 0 0; font-size:.92rem; color:var(--ink-2)">Primero mira las <b>señales positivas de la propia empresa</b> (solo 3 pasaron el filtro estricto). Después la tabla SEVP CY2019 — la evidencia gubernamental más reciente que se pudo leer completa — y las <b>negativas verificadas</b>, porque corregir una lista es tan importante como armarla. Al final, el contexto CY2024 y los huecos abiertos (qué no se pudo confirmar en esta sesión).</p>
+        </div>
+
+        <h3 style="margin:18px 0 4px; font-size:1.1rem">Las únicas 3 señales positivas que pasaron el filtro estricto</h3>
+        <p style="margin:0 0 12px; color:var(--ink-2); max-width:72ch">Criterio: lo dice la <b>propia empresa</b> en su sitio oficial, con fecha y cita textual. Todo lo demás quedó fuera de “verificado” aunque suene convincente en un agregador.</p>
+
+        <div class="neg-grid" role="list" aria-label="Señales positivas verificadas en páginas oficiales">
+          <article class="neg-card" style="border-top-color:var(--accent)" role="listitem">
+            <h3>Duolingo — education AI</h3>
+            <p><span class="lbl" style="color:var(--accent-ink)">Página oficial · aplicación Greenhouse</span></p>
+            <blockquote>“Are you eligible or currently in a period of Optional Practical Training (OPT)?” / “After the OPT, are you eligible for a 24-month OPT extension … based upon a degree … in STEM?”</blockquote>
+            <p>Es la señal más directa que se encontró en una application concreta: Duolingo pregunta explícitamente por OPT y por la extensión STEM de 24 meses en su application oficial (Associate Product Manager Intern y Software Engineer Intern, vigentes al 2026-10-06, deadline Oct 8, 2026). <b>No prueba</b> garantía de hire, ni una política OPT de toda la empresa, ni sponsorship H-1B posterior; prueba que <b>en esas aplicaciones</b> se filtra por elegibilidad OPT/STEM OPT.</p>
+            <p class="src">Fuente oficial: <a href="https://job-boards.greenhouse.io/duolingounirecruitment/jobs/8806188002" target="_blank" rel="noopener">Duolingo University Recruitment — application</a></p>
+          </article>
+
+          <article class="neg-card" style="border-top-color:var(--accent)" role="listitem">
+            <h3>Coinbase — fintech / crypto</h3>
+            <p><span class="lbl" style="color:var(--accent-ink)">Página oficial · FAQ de internships (verificada en vivo)</span></p>
+            <blockquote>“Yes, Coinbase offers visa sponsorships for international candidates living in the United States … Sponsorship is subject to approval and, if granted, is for the duration of the internship only.”</blockquote>
+            <p>La misma página indica que <b>participa en E-Verify</b> “in certain locations, as required by law” — dato relevante porque STEM OPT exige empleador E-Verify, pero la frase está acotada a “certain locations”. <b>No prueba</b> contratación OPT post-graduación ni H-1B: el FAQ es de sponsorship para <b>internships</b> y dice explícitamente que es solo por la duración de la pasantía.</p>
+            <p class="src">Fuente oficial: <a href="https://www.coinbase.com/en-gb/careers/internships" target="_blank" rel="noopener">Coinbase — Internships FAQ</a> (leída en vivo 2026-10-06)</p>
+          </article>
+
+          <article class="neg-card" style="border-top-color:var(--accent)" role="listitem">
+            <h3>Anthropic — AI</h3>
+            <p><span class="lbl" style="color:var(--accent-ink)">Página oficial · job board Greenhouse</span></p>
+            <blockquote>“Visa sponsorship: We do sponsor visas! However, we aren't able to successfully sponsor visas for every role and every candidate. But if we make you an offer, we will make every reasonable effort to get you a visa…”</blockquote>
+            <p>Declaración general de sponsorship en el apartado Logistics de roles full-time de ese posting, con abogado de inmigración propio. <b>No prueba</b> contratación OPT/STEM OPT específica ni una política para todos los roles. Ojo: el mismo posting aclara que el <b>Fellows Program no patrocina</b> (“We are not currently able to sponsor visas for fellows”) y que las políticas full-time no aplican a Fellows.</p>
+            <p class="src">Fuente oficial: <a href="https://job-boards.greenhouse.io/anthropic/jobs/5183044008" target="_blank" rel="noopener">Anthropic — posting oficial (Logistics)</a></p>
+          </article>
+        </div>
+
+        <h3 style="margin:20px 0 4px; font-size:1.1rem">Lo que dice el gobierno: quién ya emplea a estudiantes en STEM OPT (SEVP CY2019)</h3>
+        <p style="margin:0 0 12px; color:var(--ink-2); max-width:72ch">La evidencia gubernamental más fuerte y completa que se pudo leer en esta sesión es el reporte <b>“SEVIS by the Numbers” CY2019</b> de SEVP (ICE), con sus top-25 empleadores por “active student count”. Son conteos de estudiantes que reportaron trabajar bajo esa autorización — no una política pública de hiring, y ya tienen años — pero es dato primario, no marketing.</p>
+        <div class="opt-grid" id="optGrid"></div>
+
+        <div class="opt-note">
+          <b>Contexto del programa (gobierno, CY2024):</b> el comunicado de ICE del 5-jun-2025 sobre el reporte SEVP 2024 reporta <b>381,140 registros SEVIS únicos</b> con autorización por practical training (sin duplicados). Por tipo (con duplicados entre tipos): <b>194,554 OPT</b>, <b>95,384 STEM OPT</b> y <b>130,586 CPT</b>. El reporte 2024 también lista top-25 empleadores, pero el PDF completo no se pudo abrir en esta sesión (403 al fetch; no se reintentó): <b>queda abierto</b> y por eso arriba uso la tabla CY2019, que sí se pudo leer.
+        </div>
+
+        <h3 style="margin:20px 0 4px; font-size:1.1rem">Corrección importante: negativas verificadas en páginas oficiales</h3>
+        <p style="margin:0 0 12px; color:var(--ink-2); max-width:72ch">Estas empresas aparecen en listas de “OPT-friendly” en otros lados, pero su propia página hoy dice lo contrario. Se deja la cita textual porque una corrección vale más que una lista larga.</p>
+
+        <div class="neg-grid" role="list" aria-label="Negativas verificadas en páginas oficiales">
+          <article class="neg-card" role="listitem">
+            <h3>Capital One — fintech</h3>
+            <p><span class="lbl" style="color:var(--danger)">Página oficial de recruiting · vigente 2026-10-06</span></p>
+            <blockquote>“At this time, Capital One will not sponsor a new applicant for employment authorization, or offer any immigration related support for this position (i.e. H1B, F-1 OPT, F-1 STEM OPT, F-1 CPT, J-1, TN, E-2, E-3, L-1 and O-1, or any EADs…)”</blockquote>
+            <p>También aclara que “immigration related support” incluye la documentación para F-1 OPT/STEM OPT/CPT. <b>No prueba</b> una política permanente de toda la empresa (“at this time” / “for this position”): es una exclusión del puesto revisado, vigente al leerla. <b>Por eso Capital One se quitó del filtro “contrata en OPT”</b> aunque sigue en la lista H-1B por su historial H-1B, no por una política OPT de empresa.</p>
+            <p class="src">Fuente oficial: <a href="https://capitalone.eightfold.ai/events/candidate?plannedEventId=2zQowJ1W&amp;domain=capitalone.com" target="_blank" rel="noopener">Capital One — recruiting oficial</a></p>
+          </article>
+
+          <article class="neg-card" role="listitem">
+            <h3>Wayfair — tech / e-commerce</h3>
+            <p><span class="lbl" style="color:var(--danger)">Posting oficial · 2025–2027</span></p>
+            <blockquote>“At this time, Wayfair will not sponsor applicants for employment authorization for this position for the following work visas: STEM OPT EAD, H-1B, H-1B1, E-3, O-1, J-1, or TN.”</blockquote>
+            <p>Corroborado por reposts recientes de Harvard Career Services de postings 2026–2027 con la misma exclusión. <b>No prueba</b> política permanente de empresa; es “at this time” y <b>por puesto</b>, pero en el posting revisado nombra explícitamente STEM OPT EAD como excluido.</p>
+            <p class="src">Fuente oficial: <a href="https://www.wayfair.com/careers/job/commercial-strategy-associate---early-careers-%28summer-2025-start%29/7658870002/apply?gh_src=seekorswimcom&amp;source=&amp;referredBy=" target="_blank" rel="noopener">Wayfair — posting oficial</a></p>
+          </article>
+
+          <article class="neg-card" role="listitem">
+            <h3>Atlassian — tech</h3>
+            <p><span class="lbl" style="color:var(--danger)">Página oficial de careers · crawled sept. 2026</span></p>
+            <blockquote>“This position is not eligible for F-1 or J-1 students and does not offer work sponsorship.”</blockquote>
+            <p>Reposts de sus postings agregan: “we do not offer U.S. work visa sponsorship to F-1/OPT, J-1/TN, or H-1B student graduates at this time”. <b>No prueba</b> política global permanente (“this position”): es la condición del puesto revisado, no de toda la empresa.</p>
+            <p class="src">Fuente oficial: <a href="https://atlassian.com/company/careers/details" target="_blank" rel="noopener">Atlassian — job details oficial</a></p>
+          </article>
+        </div>
+
+        <div class="method" role="note" aria-label="Nota metodológica sobre datos OPT">
+          <b>Límites de estos datos (para que no te vendan humo).</b> 1) SEVP no publica — hasta donde se pudo verificar — una tabla pública única y en vivo de empleadores OPT; publica top-25 dentro de su reporte anual y datasets históricos “Top 200” (p. ej. CY2003–2019). 2) Los conteos SEVP incluyen staffing/consultoría como empleador de registro (Integra, Populus, Randstad, AZTech, Veridic, Marlabs): el “empleador” puede no ser el lugar donde realmente trabajas. 3) Los datos H-1B (USCIS/NFAP) son un proxy de pipeline OPT→H-1B, no contratación OPT: una parte grande del “empleo inicial” H-1B son cambios F-1→H-1B, pero el dato público no lo separa por estatus previo. 4) Las frases de empresa (“at this time”, “for this position”) cambian por rol y ciclo: revísalas puesto por puesto. 5) En esta sesión varias páginas oficiales devolvieron bloqueo/403 (uscis.gov y studyinthestates.dhs.gov con Akamai; PDFs de ICE con 403): las citas oficiales de arriba vienen de lecturas indexadas del contenido oficial, marcadas como tal en el reporte de investigación del 2026-10-06.
+        </div>
+
+        <div class="opt-note">
+          <b>Cómo usar esto sin autoengañarte:</b> 1) No confíes en una lista “OPT-friendly” sin cita oficial por puesto o dato SEVP. 2) Si vas a necesitar STEM OPT, confirma <b>E-Verify</b> del empleador y que firme el <b>I-983</b> antes de aceptar. 3) Pregunta por el equipo concreto: “¿Han tenido empleados en STEM OPT y han presentado H-1B para este rol antes?” — eso vale más que el historial global de la empresa. 4) Si el posting actual trae una exclusión como las verificadas (Capital One, Wayfair, Atlassian), no inviertas tu ventana OPT en <b>ese puesto</b> salvo que otro posting vigente diga lo contrario por escrito; no lo leas como un veredicto permanente sobre toda la empresa.
+        </div>
+      </section>
+
+      <section aria-labelledby="grafico">
+        <div class="chart-card">
+          <h3 id="grafico">Quién presenta más: LCA en FY2025</h3>
+          <p class="sub">Las 10 empresas de la lista con más LCA presentadas en el año fiscal 2025. Volumen = hábito de patrocinar, no garantía individual.</p>
+          <div id="chart"></div>
+          <p class="chart-note">Fuente: páginas de empleador de MyVisaJobs (datos DOL LCA), observadas el 5-oct-2026. Cognizant queda fuera del gráfico: sus cifras FY2025 conflictúan entre fuentes (ver su tarjeta).</p>
+        </div>
+      </section>
+
+      <section aria-labelledby="lista">
+        <div class="sec-head">
+          <h2 id="lista">Las 30 empresas (sujetas al cupo H-1B) — con marca OPT verificada</h2>
+          <p>Agrupa el mercado en cinco bloques: big tech, fintech/bancos/pagos, empresas de IA y datos de tamaño medio, firmas de trading y consultoría IT. Filtra por bloque, busca por nombre o rol, o activa <b>“Solo empleadores con estudiantes STEM OPT (SEVP CY2019)”</b> para ver solo las que aparecen en el top gubernamental de empleo STEM OPT. La etiqueta verde ahora dice exactamente eso: no es una promesa de hiring hoy, es evidencia SEVP de que ya empleaban estudiantes en STEM OPT.</p>
+          <p class="small">Importante: Capital One ya <b>no</b> lleva la etiqueta OPT. En el puesto revisado en su página oficial vigente se excluye apoyo para F-1 OPT/STEM OPT/CPT (“at this time / for this position”); sigue en la lista solo por su historial H-1B, no como evidencia de una política OPT de empresa. Cómo se ordenan por defecto: por volumen de LCA. Las cifras mezclan FY2025 y, donde se marca, FY2024 o acumulados — cada tarjeta dice el período exacto.</p>
+        </div>
+
+        <div class="controls" role="region" aria-label="Filtros de la lista">
+          <div class="row">
+            <label class="search">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.8-3.8"/></svg>
+              <input id="q" type="search" placeholder="Buscar empresa o rol: «data scientist», «quant», «Amazon»…" aria-label="Buscar empresa o rol" />
+            </label>
+            <select id="sort" class="sort" aria-label="Ordenar lista">
+              <option value="lca">Ordenar: mayor volumen LCA</option>
+              <option value="salary">Ordenar: salario típico más alto</option>
+              <option value="name">Ordenar: nombre (A–Z)</option>
+            </select>
+          </div>
+          <div class="chips" id="chips" role="group" aria-label="Filtrar por bloque"></div>
+          <div class="chips" style="margin-top:8px">
+            <button type="button" class="chip" id="optToggle" aria-pressed="false">Solo empleadores con estudiantes STEM OPT (SEVP CY2019)</button>
+          </div>
+          <p class="count-line" id="countLine" aria-live="polite"></p>
+        </div>
+
+        <div class="grid" id="grid" style="margin-top:16px"></div>
+        <div class="empty" id="empty" hidden>
+          <p style="margin:0 0 6px; font-weight:600; color:var(--ink)">Ninguna empresa coincide con ese filtro.</p>
+          <p style="margin:0">Prueba con otro rol («software engineer», «data») o limpia la búsqueda.</p>
+        </div>
+      </section>
+
+      <section aria-labelledby="capexempt">
+        <div class="sec-head">
+          <h2 id="capexempt">La ruta sin lotería: empleadores cap-exempt</h2>
+          <p>Universidades, laboratorios nacionales y organismos públicos de investigación están <b>exentos del cupo H-1B</b>: pueden presentar la petición en cualquier momento del año, sin sorteo. Pagan menos que la industria privada, pero ofrecen certeza — y para perfiles de investigación es una vía real hacia roles de research scientist, research software engineer o científico de datos.</p>
+          <p class="small">Cifras FY2025 de MyVisaJobs, observadas el 5-oct-2026. La exención depende del tipo de empleador (universidad, nonprofit afiliada a una universidad, u organización de investigación nonprofit/gubernamental), no de lo que diga un anuncio de empleo.</p>
+        </div>
+        <div class="cap-grid" id="capGrid"></div>
+      </section>
+
+      <section aria-labelledby="verificar">
+        <div class="two-col">
+          <div class="panel">
+            <h3 id="verificar">Verifica cualquier empresa tú mismo</h3>
+            <ol class="steps">
+              <li><span class="num"></span><p><b>USCIS H-1B Employer Data Hub</b> (uscis.gov): busca el <b>nombre legal</b> de la empresa y mira peticiones aprobadas/negadas por año fiscal, separando empleo inicial de continuaciones. Es el estándar de oro para aprobaciones.</p></li>
+              <li><span class="num"></span><p><b>Datos LCA del DOL</b> (flag.dol.gov): cada LCA con título del puesto, salario y ciudad. MyVisaJobs, h1bdata.info y h1bgrader repackagan estos datos — siempre contrasta con el nombre legal exacto (ej.: “OpenAI OpCo” no es lo mismo que “OpenAI LP”).</p></li>
+              <li><span class="num"></span><p><b>Página del empleador en MyVisaJobs</b> (myvisajobs.com/employer/…): agrega DOL + USCIS, muestra ranking, salario promedio, desglose por puesto y la bandera “H-1B Dependent”.</p></li>
+              <li><span class="num"></span><p><b>h1bdata.info</b>: busca registros LCA individuales por empresa y año, con títulos y salarios reales puesto por puesto. Ideal para confirmar que patrocinan <i>tu</i> tipo de rol.</p></li>
+              <li><span class="num"></span><p><b>Avisos LCA públicos de la propia empresa</b>: Accenture, IBM y Cognizant publican sus avisos LCA en sus sitios — prueba de actividad de patrocinio <i>actual</i> (2026), con salario y sede.</p></li>
+              <li><span class="num"></span><p><b>Para la ruta cap-exempt</b>: confirma que el empleador califica (universidad, nonprofit afiliada, organismo de investigación) según la definición de las instrucciones del formulario I-129 — no según el anuncio del puesto.</p></li>
+              <li><span class="num"></span><p><b>Para la ruta OPT/STEM OPT</b>: antes de aceptar, confirma que el empleador está inscrito en <b>E-Verify</b> (requisito solo para STEM OPT), que firmará el <b>Form I-983</b> y que el rol está directamente relacionado con tu grado. Revisa también si esa misma empresa aparece arriba con historial H-1B: OPT sin puente a H-1B se corta al mes 36.</p></li>
+            </ol>
+          </div>
+          <div class="panel">
+            <h3>Señales de alerta que ya aparecen en los datos</h3>
+            <ul class="caveat-list">
+              <li><b>Bandera “H-1B Dependent” o “Willful Violator”</b> en MyVisaJobs: la empresa queda bajo escrutinio extra y debe reclutar trabajadores de EE.UU. primero. Meta y NVIDIA cargan hoy la marca H-1B Dependent.</li>
+              <li><b>Suspensión de PERM</b> (la vía a la green card): si el DOL suspende los PERM de una empresa, su ruta a residencia queda bloqueada aunque el H-1B siga. Es el caso de Cognizant desde septiembre de 2026.</li>
+              <li><b>Volumen que cae año a año</b> o volumen altísimo con salarios bajos: patrón típico de consultoras de staffing, el sector con más auditorías del DOL (operación Project Firewall, desde sept. 2025).</li>
+              <li><b>Historial ≠ garantía.</b> Que una empresa haya presentado miles de peticiones no asegura que patrocine tu caso. La pregunta que vale en la entrevista es por el historial <i>de ese equipo</i> contratando con sponsorship.</li>
+              <li><b>La lotería FY2027 pondera por salario.</b> Un rol de $110k compite con menos participaciones que uno de $250k. El salario típico de cada tarjeta es parte de tu probabilidad real, no un detalle.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <h2>Fuentes y método</h2>
+        <p>Las cifras H-1B por empresa se observaron el 5 de octubre de 2026 en las páginas de empleador de <b>MyVisaJobs</b> (que agregan los datos públicos de LCA del DOL y de peticiones I-129 de USCIS), en <b>h1bdata.info</b> (registros LCA del DOL) y en el análisis FY2025 de <b>NFAP</b> sobre datos USCIS. Cada tarjeta enlaza su fuente principal. Las cifras son evidencia de comportamiento pasado; no garantizan patrocinio futuro para ningún candidato individual, y pueden diferir de lo que muestre la fuente al consultarla hoy. Esto es información pública organizada, no asesoría legal migratoria.</p>
+        <ul>
+          <li>NFAP, <i>H-1B Petitions and Denial Rates FY 2025</i>: <a href="https://nfap.com/wp-content/uploads/2025/11/H-1B-Petitions-and-Denial-Rates-FY-2025.DAY-OF-RELEASE.2025.pdf" target="_blank" rel="noopener">informe (PDF)</a></li>
+          <li>Estado del fee de $100k: <a href="https://www.ellis.com/resources/h1b-100k-fee-blocked-california" target="_blank" rel="noopener">Ellis</a> · <a href="https://migraprep.com/en/news/h1b-100k-fee-policies-vacated-2026-10-02/" target="_blank" rel="noopener">MigraPrep (2-oct-2026)</a></li>
+          <li>Lotería ponderada FY2027: <a href="https://www.tryalma.com/learn/fy2027-h1b-registration-dates-timeline" target="_blank" rel="noopener">Alma</a> · <a href="https://www.efinancialcareers.com/news/this-is-who-banks-are-hiring-on-h1-b-visas-in-2026-and-what-they-re-paid" target="_blank" rel="noopener">eFinancialCareers (banca, sept. 2026)</a></li>
+          <li>Consulta directa: <a href="https://www.myvisajobs.com/reports/h1b/" target="_blank" rel="noopener">MyVisaJobs — reportes H-1B</a> · <a href="https://h1bdata.info/" target="_blank" rel="noopener">h1bdata.info</a> · <a href="https://scale.jobs/blog/cap-exempt-h1b-jobs-complete-list-employers-skip-lottery" target="_blank" rel="noopener">scale.jobs — ranking cap-exempt</a></li>
+          <li><b>Verificación OPT (6-oct-2026) — empresas (propia página):</b> <a href="https://job-boards.greenhouse.io/duolingounirecruitment/jobs/8806188002" target="_blank" rel="noopener">Duolingo — application con preguntas OPT/STEM OPT</a> · <a href="https://www.coinbase.com/en-gb/careers/internships" target="_blank" rel="noopener">Coinbase — FAQ internships (sponsorship + E-Verify)</a> · <a href="https://job-boards.greenhouse.io/anthropic/jobs/5183044008" target="_blank" rel="noopener">Anthropic — “We do sponsor visas!”</a></li>
+          <li><b>Verificación OPT (6-oct-2026) — negativas (propia página):</b> <a href="https://capitalone.eightfold.ai/events/candidate?plannedEventId=2zQowJ1W&amp;domain=capitalone.com" target="_blank" rel="noopener">Capital One — exclusión F-1 OPT/STEM OPT/CPT</a> · <a href="https://www.wayfair.com/careers/job/commercial-strategy-associate---early-careers-%28summer-2025-start%29/7658870002/apply?gh_src=seekorswimcom&amp;source=&amp;referredBy=" target="_blank" rel="noopener">Wayfair — exclusión STEM OPT EAD</a> · <a href="https://atlassian.com/company/careers/details" target="_blank" rel="noopener">Atlassian — “not eligible for F-1 or J-1 students”</a></li>
+          <li><b>Verificación OPT (6-oct-2026) — gobierno:</b> <a href="https://www.ice.gov/doclib/sevis/btn/20_0903_hsi_sevp-cy19-sevis-btn.pdf" target="_blank" rel="noopener">SEVP “SEVIS by the Numbers” CY2019 (PDF ICE) — top-25 STEM OPT/CPT</a> · <a href="https://ice.gov/news/releases/ice-releases-2024-sevp-annual-report" target="_blank" rel="noopener">ICE — 2024 SEVP Annual Report (press release, 5-jun-2025)</a> · <a href="https://uscis.gov/working-in-the-united-states/students-and-exchange-visitors/optional-practical-training-extension-for-stem-students-stem-opt" target="_blank" rel="noopener">USCIS — STEM OPT (E-Verify, I-983, desempleo 90/150 días)</a> · <a href="http://uscis.gov/policy-manual/volume-2-part-f-chapter-5" target="_blank" rel="noopener">USCIS Policy Manual Vol. 2 Part F Ch. 5 (OPT 12 meses)</a></li>
+        </ul>
+        <p><b>Nota OPT (qué se quitó y por qué).</b> La versión anterior de esta sección citaba conteos OPT/STEM OPT de agregadores que decían basarse en SEVP/USCIS y una lista universitaria de “empresas que contratan OPT”. En la verificación del 6-oct-2026 no se encontró una página oficial de esas empresas que dijera “contratamos OPT” en esos términos, y SEVP no publica una tabla pública única y en tiempo real. Por eso esos conteos se reemplazaron por: (a) las 3 señales que sí están en la propia página de la empresa, (b) el top-25 SEVP CY2019 leído del PDF oficial de ICE, y (c) las 3 negativas verificadas. Esto es corrección, no relleno: si una empresa no pasó el filtro, no se la presenta como “OPT-friendly”.</p>
+        <p><b>Huecos abiertos (no cerrados en esta sesión).</b> Los nombres y conteos del top-25 de empleadores del reporte SEVP CY2024 existen según el comunicado de ICE, pero el PDF completo devolvió 403 al fetch y no se reintentó; la catalogación actual de datasets descargables de SEVP tampoco se pudo confirmar (403 / bloqueo). Las páginas vivas de uscis.gov y studyinthestates.dhs.gov bloquearon el navegador de investigación (Akamai), así que las reglas OPT/STEM OPT se citan desde lecturas indexadas del contenido oficial. Para Google, Microsoft, Meta, Apple, Stripe, Databricks y Adobe no se encontró una página oficial con política OPT explícita: figuran como <b>no verificadas</b> en ese punto aunque SEVP CY2019 los muestre empleando estudiantes STEM OPT.</p>
+        <p>Datos que la investigación no pudo cerrar y quedan marcados como abiertos en las tarjetas: el total exacto de LCA FY2025 de Stripe; el agregado FY2025 de Databricks (se usa su data 2024 del DOL); y las cifras FY2025 de Cognizant, que conflictúan entre fuentes.</p>
+      </footer>
+
+    </div>
+
+    <script>
+      "use strict";
+
+      var CATS = {
+        bigtech:  { label: "Big Tech",            color: "var(--cat-bigtech)" },
+        fintech:  { label: "Fintech · bancos · pagos", color: "var(--cat-fintech)" },
+        ai:       { label: "IA y datos (medianas)", color: "var(--cat-ai)" },
+        trading:  { label: "Trading / quant",     color: "var(--cat-trading)" },
+        consult:  { label: "Consultoría IT",      color: "var(--cat-consult)" }
+      };
+
+      /* Cifras observadas el 5-oct-2026 en MyVisaJobs (DOL LCA + USCIS I-129),
+         h1bdata.info (registros LCA del DOL) y NFAP (USCIS FY2025).
+         lca = conteo para ordenar; cada tarjeta muestra su período exacto. */
+      var COMPANIES = [
+        { name: "Amazon", legal: "Amazon.com Services LLC", cat: "bigtech",
+          lca: 15529, metric: "15,529", metricWhat: "LCA presentadas en FY2025 — el empleador H-1B #1 del país",
+          sub: "Empleo inicial FY2025: <b>4,644 aprobaciones</b> (NFAP/USCIS), el mayor número de contrataciones nuevas de cualquier empresa.",
+          salary: 157259, salaryWhat: "salario promedio ofrecido FY2025",
+          roles: ["Software Development Engineer", "Data Engineer", "Machine Learning Engineer", "Cloud Engineer"],
+          signal: "El patrocinador más grande del programa en volumen. Su tamaño significa procesos de inmigración maduros y miles de casos por año; en 2026 circularon reportes sobre despidos y su impacto en titulares H-1B, así que conviene mirar el equipo concreto.",
+          flags: [{ t: "good", txt: "Volumen máximo de empleo inicial" }],
+          src: [["MyVisaJobs · Amazon.com Services", "http://www.myvisajobs.com/employer/amazon-com-services/"], ["VisaVerge · despidos y H-1B (2026)", "https://www.visaverge.com/h1b/amazon-layoffs-and-h-1b-claims-implications-for-visa-holders/"]] },
+
+        { name: "Microsoft", legal: "Microsoft Corporation", cat: "bigtech",
+          lca: 9362, metric: "9,362", metricWhat: "LCA presentadas en FY2025 (#2 del país)",
+          sub: "Empleo inicial FY2025: <b>1,394 aprobaciones</b> (NFAP/USCIS). En FY2024 USCIS aprobó 4,725 peticiones en total.",
+          salary: null, salaryWhat: "",
+          roles: ["Software Engineer", "Data Engineer", "ML / AI Engineer", "Cloud (Azure)"],
+          signal: "Un portavoz de Microsoft dijo en 2025 que el 78% de sus peticiones H-1B de FY2025 fueron extensiones, no contrataciones nuevas: el volumen bruto infla la cifra. Aun así, sus ~1,400 aprobaciones iniciales lo mantienen entre los mayores empleadores nuevos del programa.",
+          flags: [{ t: "warn", txt: "La mayoría de su volumen son renovaciones" }],
+          src: [["MyVisaJobs · Microsoft", "https://www.myvisajobs.com/employer/microsoft/"]] },
+
+        { name: "Google", legal: "Google LLC (Alphabet)", cat: "bigtech",
+          lca: 8945, metric: "8,945", metricWhat: "LCA presentadas en FY2025 (#7 del país)",
+          sub: "<b>5,609 peticiones I-129</b> en FY2025, 5,552 aprobadas. Empleo inicial FY2025: <b>1,050 aprobaciones</b> (NFAP/USCIS).",
+          salary: 152827, salaryWhat: "promedio en LCA de Data Engineer (26 casos reportados)",
+          roles: ["Software Engineer", "Research Scientist", "Data Engineer", "ML Engineer"],
+          signal: "Patrocina tanto ingeniería de producto como investigación. El grueso de sus I-129 son continuaciones de personal ya contratado; las aprobaciones iniciales (~1,050) son la medida realista para alguien que entra desde fuera.",
+          flags: [],
+          src: [["MyVisaJobs · Google", "http://www.myvisajobs.com/employer/google/"]] },
+
+        { name: "Apple", legal: "Apple Inc.", cat: "bigtech",
+          lca: 7040, metric: "7,040", metricWhat: "LCA presentadas en FY2025",
+          sub: "<b>5,440 peticiones I-129</b> en FY2025, 5,382 aprobadas. USCIS aprobó 4,202 peticiones suyas en FY2025 (3,348 en FY2024).",
+          salary: null, salaryWhat: "",
+          roles: ["Software Engineer", "ML Engineer", "Hardware Engineer", "Data Engineer"],
+          signal: "Volumen alto y sostenido año a año (12,680 LCA entre FY2022–FY2024). Patrocina ingeniería de hardware además de software e IA, algo menos común en esta lista.",
+          flags: [],
+          src: [["MyVisaJobs · Apple", "https://www.myvisajobs.com/employer/apple/"]] },
+
+        { name: "Meta", legal: "Meta Platforms Inc.", cat: "bigtech",
+          lca: 6629, metric: "6,629", metricWhat: "LCA presentadas en FY2025",
+          sub: "<b>6,353 peticiones I-129</b> en FY2025, 6,294 aprobadas. Empleo inicial FY2025: <b>1,555 aprobaciones</b> (NFAP/USCIS).",
+          salary: 193119, salaryWhat: "promedio en 222 LCA de Data Scientist (FY2024); Data Engineer: $189,091",
+          roles: ["Data Scientist", "Data Engineer", "Software Engineer", "ML Engineer"],
+          signal: "Uno de los mayores contratantes de data scientists por H-1B, con salarios que lo ponen en el tramo alto de la nueva lotería ponderada. Carga la designación regulatoria “H-1B Dependent”, que implica escrutinio adicional.",
+          flags: [{ t: "warn", txt: "Marcado “H-1B Dependent”" }, { t: "good", txt: "Salarios altos → ventaja en lotería FY2027" }],
+          src: [["MyVisaJobs · Meta Platforms", "http://www.myvisajobs.com/employer/meta-platforms/"], ["MyVisaJobs · reporte Data Scientist", "https://www.myvisajobs.com/reports/h1b/job-title/data-scientist/"]] },
+
+        { name: "Deloitte Consulting", legal: "Deloitte Consulting LLP", cat: "consult",
+          lca: 4286, metric: "4,286", metricWhat: "LCA presentadas en FY2025",
+          sub: "<b>3,040 peticiones I-129</b> en FY2025, 3,005 aprobadas. Entre FY2022–FY2024 acumuló 11,008 LCA (#13 del país).",
+          salary: null, salaryWhat: "",
+          roles: ["Consultor IT", "Software / Data delivery", "Tech strategy"],
+          signal: "La consultora grande con más volumen de esta lista. Modelo de colocación en clientes: patrocina mucho, pero el puesto real depende del cliente asignado, y las consultoras están bajo escrutinio reforzado del DOL.",
+          flags: [{ t: "warn", txt: "Modelo de colocación en cliente" }],
+          src: [["MyVisaJobs · Deloitte Consulting", "https://myvisajobs.com/employer/deloitte-consulting/"]] },
+
+        { name: "IBM", legal: "International Business Machines Corp", cat: "consult",
+          lca: 3095, metric: "3,095", metricWhat: "LCA presentadas en FY2025 (#18 del país)",
+          sub: "En lo que va de FY2026 (actualización de julio 2026): 602 LCA y <b>990 I-129, 974 aprobadas</b>. Solo en Data Engineer: 87 LCA.",
+          salary: 128058, salaryWhat: "promedio en LCA de Data Engineer (87 casos)",
+          roles: ["Data Engineer", "IT Project Manager", "Application Architect / SWE", "IT Specialist"],
+          signal: "Híbrido consultoría + producto, con avisos LCA públicos y activos en 2026 (p. ej., IT Project Manager en San Francisco a $224,597; roles en Dallas y Virginia ~$151–155k). No está marcado H-1B Dependent.",
+          flags: [{ t: "good", txt: "Avisos LCA 2026 públicos y activos" }],
+          src: [["MyVisaJobs · IBM", "https://www.myvisajobs.com/employer/ibm/"]] },
+
+        { name: "Accenture", legal: "Accenture LLP", cat: "consult",
+          lca: 2921, metric: "2,921", metricWhat: "LCA presentadas en FY2025",
+          sub: "<b>1,902 peticiones I-129</b> en FY2025: 1,886 aprobadas, 16 negadas. Además presentó 332 certificaciones laborales (green card) ese año.",
+          salary: 146224, salaryWhat: "salario promedio reciente en sus LCA",
+          roles: ["Computer Systems Analyst", "Software Developer", "Data / AI delivery"],
+          signal: "Mantiene avisos LCA públicos y vigentes en 2026 (analistas a $165,400 en Irving, TX; developers a $189,592 en Iselin, NJ; $109,283 en Atlanta). Patrocina en volumen, pero es el modelo clásico de consultoría con colocación en cliente. No está marcado H-1B Dependent.",
+          flags: [{ t: "warn", txt: "Modelo de colocación en cliente" }, { t: "good", txt: "También tramita green cards (332 en FY2025)" }],
+          src: [["MyVisaJobs · Accenture", "https://www.myvisajobs.com/employer/accenture/"]] },
+
+        { name: "JPMorgan Chase", legal: "JPMorgan Chase & Co.", cat: "fintech",
+          lca: 2903, metric: "2,903", metricWhat: "LCA certificadas en FY2024",
+          sub: "USCIS FY2025: <b>3,068 aprobaciones en total</b> — 553 de empleo inicial, 2,157 continuaciones y 153 cambios de empleador.",
+          salary: null, salaryWhat: "",
+          roles: ["Software Engineer", "Data Engineer", "Risk / Tech Analyst"],
+          signal: "El banco con más músculo tecnológico de la lista (hubs en Nueva York y Plano, TX). Como en todo big tech, la mayoría de su volumen son renovaciones; aun así, 553 contrataciones nuevas en un año es una puerta real.",
+          flags: [],
+          src: [["MyVisaJobs · JPMorgan Chase", "https://www.myvisajobs.com/employer/jpmorgan-chase/"]] },
+
+        { name: "NVIDIA", legal: "NVIDIA Corporation", cat: "bigtech",
+          lca: 1905, metric: "1,905", metricWhat: "LCA presentadas en FY2025",
+          sub: "<b>1,781 peticiones I-129</b> en FY2025, 1,767 aprobadas.",
+          salary: null, salaryWhat: "",
+          roles: ["ML / AI Engineer", "Software Engineer (GPU/CUDA)", "Hardware Engineer"],
+          signal: "Según Business Insider, fue la única gran tecnológica que NO recortó sus peticiones H-1B en el primer trimestre de FY2026 mientras sus pares reducían — demanda directa del boom de hardware para IA. Está marcado “H-1B Dependent”.",
+          flags: [{ t: "warn", txt: "Marcado “H-1B Dependent”" }, { t: "good", txt: "No recortó peticiones en FY2026" }],
+          src: [["MyVisaJobs · NVIDIA", "https://myvisajobs.com/employer/nvidia/"]] },
+
+        { name: "Citibank", legal: "Citibank, N.A. (Citigroup)", cat: "fintech",
+          lca: 1400, metric: "1,400", metricWhat: "LCA presentadas en FY2025",
+          sub: "Entre FY2022–FY2024 acumuló 3,393 LCA (#37 del país). La filial Citigroup Global Markets presentó otras 157 LCA en FY2025.",
+          salary: null, salaryWhat: "",
+          roles: ["Software Engineer", "Data Engineer", "Quant / Markets Tech"],
+          signal: "Patrocinador bancario constante con varias entidades legales que presentan por separado; al verificar, suma el grupo completo y no solo una filial.",
+          flags: [],
+          src: [["MyVisaJobs · Citibank", "https://www.myvisajobs.com/employer/citibank/"]] },
+
+        { name: "Goldman Sachs", legal: "Goldman Sachs & Co. / Group", cat: "fintech",
+          lca: 1346, metric: "1,346", metricWhat: "LCA presentadas en FY2025",
+          sub: "En FY2024 presentó <b>830 peticiones I-129, 823 aprobadas</b>. Entre FY2022–FY2024: 4,181 LCA (#33).",
+          salary: 136000, salaryWhat: "promedio bancario reportado por eFinancialCareers (sept. 2026, 3,969 casos del sector)",
+          roles: ["Software Engineer (Engineering div.)", "Data Engineer", "Quant / Strats"],
+          signal: "Su división de ingeniería es un empleador tech en sí misma. eFinancialCareers reportó en sept. 2026 que la banca paga en promedio ~$136k en sus casos H-1B, con Goldman en el rango competitivo del sector.",
+          flags: [],
+          src: [["MyVisaJobs · Goldman Sachs", "https://www.myvisajobs.com/employer/goldman-sachs/"], ["eFinancialCareers · banca y H-1B 2026", "https://www.efinancialcareers.com/news/this-is-who-banks-are-hiring-on-h1-b-visas-in-2026-and-what-they-re-paid"]] },
+
+        { name: "Oracle", legal: "Oracle America Inc.", cat: "bigtech",
+          lca: 1276, metric: "1,276", metricWhat: "LCA presentadas en FY2025 (#17 del país)",
+          sub: "<b>2,703 peticiones I-129</b> en FY2025, 2,690 aprobadas — un conteo I-129 muy alto frente a sus LCA, señal de muchas extensiones.",
+          salary: null, salaryWhat: "",
+          roles: ["Software Engineer (enterprise)", "Database / DBA", "Cloud Engineer (OCI)"],
+          signal: "Patrocinador histórico de software empresarial y bases de datos. Su volumen pesa más en renovaciones que en contratación nueva, pero el flujo de peticiones es constante.",
+          flags: [{ t: "warn", txt: "La mayoría de su volumen son renovaciones" }],
+          src: [["MyVisaJobs · Oracle America", "https://www.myvisajobs.com/employer/oracle-america/"]] },
+
+        { name: "PayPal", legal: "PayPal Inc.", cat: "fintech",
+          lca: 1197, metric: "1,197", metricWhat: "LCA presentadas en FY2025",
+          sub: "<b>984 peticiones I-129</b> en FY2025, 970 aprobadas. Entre FY2022–FY2024: 2,786 LCA (#39).",
+          salary: null, salaryWhat: "",
+          roles: ["Software Engineer", "Data Scientist", "Risk / ML Engineer"],
+          signal: "Fintech de pagos con contratación H-1B sostenida en ingeniería y modelos de riesgo. Volumen medio-alto y estable a lo largo de varios años.",
+          flags: [],
+          src: [["MyVisaJobs · PayPal", "https://myvisajobs.com/employer/paypal/"]] },
+
+        { name: "Morgan Stanley", legal: "Morgan Stanley Services Group Inc.", cat: "fintech",
+          lca: 764, metric: "764", metricWhat: "LCA presentadas en FY2025 (Services Group)",
+          sub: "<b>656 peticiones I-129</b>, 647 aprobadas. La entidad Morgan Stanley & Co. LLC presentó otras 186 I-129 (182 aprobadas).",
+          salary: 165500, salaryWhat: "salario promedio H-1B más alto entre los bancos analizados (eFinancialCareers)",
+          roles: ["Software Engineer", "Data Engineer", "Quant / Risk Tech"],
+          signal: "El banco que mejor paga en sus casos H-1B según eFinancialCareers ($165.5k promedio) — eso lo posiciona bien en la lotería ponderada por salario de FY2027.",
+          flags: [{ t: "good", txt: "Salarios altos → ventaja en lotería FY2027" }],
+          src: [["MyVisaJobs · Morgan Stanley Services Group", "https://www.myvisajobs.com/employer/morgan-stanley-services-group/"], ["eFinancialCareers · salarios H-1B en banca", "https://www.efinancialcareers.com/news/h1b-visa-pay-banking"]] },
+
+        { name: "Capital One", legal: "Capital One Services LLC", cat: "fintech",
+          lca: 728, metric: "728", metricWhat: "LCA presentadas en FY2025",
+          sub: "<b>729 peticiones I-129</b> en FY2025, 728 aprobadas — aprobación prácticamente total.",
+          salary: null, salaryWhat: "",
+          roles: ["Software Engineer", "Data Engineer", "ML Engineer"],
+          signal: "Un banco que opera como empresa de tecnología (tarjetas + banca digital) con una organización de ingeniería grande y aprobación I-129 casi perfecta en FY2025. OJO OPT: en el puesto revisado en su página oficial (leída 2026-10-06) dice que no ofrece apoyo migratorio para F-1 OPT/STEM OPT/CPT — frase acotada a “at this time / for this position”, no una política probada de toda la empresa. No lo trates como puerta OPT en ese posting.",
+          flags: [{ t: "danger", txt: "Posting revisado excluye F-1 OPT/STEM OPT" }, { t: "good", txt: "Aprobación I-129 casi total en FY2025" }],
+          src: [["MyVisaJobs · Capital One Services", "https://www.myvisajobs.com/employer/capital-one-services/"], ["Capital One · exclusión OPT (oficial)", "https://capitalone.eightfold.ai/events/candidate?plannedEventId=2zQowJ1W&domain=capitalone.com"]] },
+
+        { name: "Wells Fargo", legal: "Wells Fargo Bank, N.A.", cat: "fintech",
+          lca: 638, metric: "638", metricWhat: "LCA presentadas en FY2025",
+          sub: "<b>582 peticiones I-129</b> en FY2025, 580 aprobadas.",
+          salary: null, salaryWhat: "",
+          roles: ["Applications Systems Engineer", "IT Project Manager", "Computer Systems Analyst"],
+          signal: "Patrocinador bancario constante con las familias de puestos IT clásicas del programa H-1B. Volumen medio y estable.",
+          flags: [],
+          src: [["MyVisaJobs · Wells Fargo Bank", "http://www.myvisajobs.com/employer/wells-fargo-bank/"]] },
+
+        { name: "Databricks", legal: "Databricks Inc.", cat: "ai",
+          lca: 331, metric: "331", metricWhat: "registros LCA en 2024 (datos DOL vía h1bdata.info; el agregado FY2025 no se localizó)",
+          sub: "Distribución salarial 2024: <b>13% sobre $200k, 47% entre $150–200k, 0% bajo $100k</b>.",
+          salary: 160000, salaryWhat: "salario mediano en sus LCA 2024",
+          roles: ["Software Engineer / Senior SWE", "Research Scientist ($200–240k)", "Data Scientist / Senior DS ($140–175k)", "Solutions Architect", "Engineering Manager ($216–275k)"],
+          signal: "Empresa de plataforma de datos/IA con sesgo medio-senior y salarios sobre la mediana: buen encaje para un perfil de máster STEM y buena posición en la lotería ponderada. La cifra “198+” que circula de 2023 ya está desactualizada.",
+          flags: [{ t: "good", txt: "Ningún caso bajo $100k en 2024" }],
+          src: [["h1bdata.info · Databricks 2024", "https://h1bdata.info/index.php?year=2024&em=databricks+inc"]] },
+
+        { name: "Stripe", legal: "Stripe Inc.", cat: "fintech",
+          lca: 219, metric: "219", metricWhat: "peticiones en 2025 con 100% de aprobación (VisaVerge s/ MyVisaJobs; el conteo LCA FY2025 exacto no se confirmó)",
+          sub: "A finales de 2023 / inicios de 2024 ya sumaba más de 148 LCA.",
+          salary: null, salaryWhat: "",
+          roles: ["Software Engineer", "Data / Risk", "Payments Infrastructure"],
+          signal: "Infraestructura de pagos con contratación fuerte de ingeniería y una huella H-1B pequeña pero activa y con aprobación perfecta en 2025. Volumen bajo = pocos cupos por año.",
+          flags: [{ t: "good", txt: "100% de aprobación en 2025" }],
+          src: [["VisaVerge · startups con sponsorship", "https://www.visaverge.com/h1b/top-5-startups-in-the-us-offering-h1b-visa-sponsorship-boost-your-career/"]] },
+
+        { name: "Mastercard", legal: "Mastercard International Inc.", cat: "fintech",
+          lca: 197, metric: "197", metricWhat: "LCA presentadas en FY2025",
+          sub: "<b>147 peticiones I-129</b> en FY2025, las 147 aprobadas. Entre FY2022–FY2024: 1,419 LCA (#99).",
+          salary: null, salaryWhat: "",
+          roles: ["Software Engineer", "Data / AI (fraude y autorización)", "Platform Engineer"],
+          signal: "Red de pagos con roles de datos e IA en fraude y autorización. Volumen menor que los bancos grandes, pero con aprobación total en FY2025 y presencia constante.",
+          flags: [{ t: "good", txt: "147 de 147 I-129 aprobadas en FY2025" }],
+          src: [["MyVisaJobs · Mastercard", "https://www.myvisajobs.com/employer/mastercard/"]] },
+
+        { name: "American Express", legal: "American Express Company", cat: "fintech",
+          lca: 138, metric: "138", metricWhat: "LCA presentadas en FY2025",
+          sub: "<b>150 peticiones I-129</b> en FY2025, 147 aprobadas. Entre FY2022–FY2024: 323 LCA.",
+          salary: null, salaryWhat: "",
+          roles: ["Software Engineer", "Data Engineer", "Risk / ML"],
+          signal: "Volumen pequeño pero presentador constante: patrocina todos los años, solo que en pocas posiciones. Realista como objetivo secundario, no principal.",
+          flags: [],
+          src: [["MyVisaJobs · American Express", "https://www.myvisajobs.com/employer/american-express/"]] },
+
+        { name: "Two Sigma", legal: "Two Sigma Solutions LLC", cat: "trading",
+          lca: 141, metric: "141", metricWhat: "LCA presentadas en FY2025",
+          sub: "<b>99 peticiones I-129</b> en FY2025, las 99 aprobadas (100%).",
+          salary: 245000, salaryWhat: "Research Scientist; Quant Researcher $215–265k y SWE $190–207k (casos de junio 2025)",
+          roles: ["Quantitative Researcher", "Software Engineer", "Research Scientist"],
+          signal: "Fondo cuantitativo con salarios de tramo élite: en la lotería ponderada FY2027 sus casos juegan con la máxima ventaja. Volumen pequeño y proceso muy selectivo.",
+          flags: [{ t: "good", txt: "Salarios élite → máxima ventaja en lotería FY2027" }, { t: "good", txt: "100% de aprobación I-129 en FY2025" }],
+          src: [["MyVisaJobs · Two Sigma Solutions", "https://www.myvisajobs.com/employer/two-sigma-solutions/"], ["h1bdata.info · Two Sigma", "https://h1bdata.info/index.php?em=two+sigma&job"]] },
+
+        { name: "OpenAI", legal: "OpenAI OpCo LLC", cat: "ai",
+          lca: 116, metric: "116", metricWhat: "LCA presentadas en FY2025",
+          sub: "<b>129 peticiones I-129</b> en FY2025, 125 aprobadas. (La entidad OpenAI LP presentó solo 2 LCA: verifica siempre el nombre legal.)",
+          salary: 350810, salaryWhat: "promedio del puesto “Member of Technical Staff” — el tramo salarial más alto del programa",
+          roles: ["Member of Technical Staff", "Research Engineer", "ML Engineer"],
+          signal: "Volumen pequeño, salarios máximos: el perfil perfecto para la lotería ponderada. Bandera roja ~ago 2026: acuerdo de $3.2M con el Departamento de Justicia por lenguaje de preferencia H-1B en anuncios de empleo — confirma que contratan con visa, pero bajo escrutinio antidiscriminación.",
+          flags: [{ t: "danger", txt: "Acuerdo DOJ $3.2M (ago 2026) por anuncios de empleo" }, { t: "good", txt: "Salarios máximos → máxima ventaja en lotería FY2027" }],
+          src: [["MyVisaJobs · OpenAI OpCo", "https://www.myvisajobs.com/employer/openai-opco/"], ["AI Weekly · acuerdo DOJ–OpenAI", "https://aiweekly.co/alerts/doj-extracts-32m-settlement-from-openai-over-h-1b-visa-preference-in-job-ads"]] },
+
+        { name: "Anthropic", legal: "Anthropic PBC", cat: "ai",
+          lca: 116, metric: "116", metricWhat: "LCA presentadas en FY2025",
+          sub: "<b>77 peticiones I-129</b> en FY2025, 75 aprobadas. Entre FY2022–FY2024 solo sumaba 63 LCA: está escalando.",
+          salary: 339211, salaryWhat: "promedio del puesto “Member of Technical Staff”",
+          roles: ["Member of Technical Staff", "Research Engineer", "ML Engineer"],
+          signal: "El mismo perfil que OpenAI: volumen pequeño en rápido crecimiento y salarios de élite (~$339k), el mejor posicionamiento posible en la lotería ponderada FY2027. La contra: muy pocas posiciones por año.",
+          flags: [{ t: "good", txt: "Salarios élite → máxima ventaja en lotería FY2027" }],
+          src: [["MyVisaJobs · Anthropic PBC", "https://www.myvisajobs.com/employer/anthropic-pbc/"]] },
+
+        { name: "Snowflake", legal: "Snowflake Inc.", cat: "ai",
+          lca: null, metric: "≈1,319", metricWhat: "aprobaciones USCIS acumuladas desde 2017 (no es un solo año)",
+          sub: "En registros LCA recientes, sus Senior Software Engineer aparecen en <b>$180,000–$183,000</b>.",
+          salary: 181500, salaryWhat: "rango observado en LCA de Senior Software Engineer ($180–183k)",
+          roles: ["Senior Software Engineer", "Data Engineer", "Data Cloud Engineering"],
+          signal: "Empresa pública de datos en la nube con buena reputación de apoyo migratorio en reseñas de empleados. Su negocio ES ingeniería de datos: encaje natural para perfiles data.",
+          flags: [],
+          src: [["MyVisaJobs · Snowflake", "https://www.myvisajobs.com/employer/snowflake/"], ["h1bdata.info · Snowflake Senior SWE", "https://h1bdata.info/index.php?em=snowflake+inc&job=senior+software+engineer"]] },
+
+        { name: "Palantir", legal: "Palantir Technologies Inc.", cat: "ai",
+          lca: 78, metric: "78", metricWhat: "trabajadores H-1B en 2024 — su récord histórico",
+          sub: "Principalmente roles de IA y software.",
+          salary: null, salaryWhat: "",
+          roles: ["Software Engineer", "AI / Forward Deployed Engineer"],
+          signal: "Volumen pequeño y contratación muy selectiva. El reporte de VisaVerge sobre su hiring H-1B viene con encuadre de seguridad nacional: en el clima político actual, es un factor de riesgo a tener presente para titulares de visa.",
+          flags: [{ t: "warn", txt: "Escrutinio político sobre su hiring H-1B" }],
+          src: [["VisaVerge · Palantir y H-1B", "https://www.visaverge.com/h1b/palantirs-h-1b-hiring-raises-concerns-over-u-s-data-security/"]] },
+
+        { name: "Jane Street", legal: "Jane Street Group LLC", cat: "trading",
+          lca: 43, metric: "43", metricWhat: "LCA presentadas en FY2025",
+          sub: "<b>58 peticiones I-129</b> en FY2025, 56 aprobadas.",
+          salary: 252739, salaryWhat: "salario promedio ofrecido en FY2024",
+          roles: ["Quantitative Developer", "Software Engineer", "Quant Trader (tech)"],
+          signal: "La firma de trading con el salario promedio más alto de la lista (~$253k): volumen diminuto, paga de decil superior. En la lotería ponderada, cada caso suyo entra con ventaja máxima.",
+          flags: [{ t: "good", txt: "Salario promedio ~$253k → máxima ventaja en lotería" }],
+          src: [["MyVisaJobs · Jane Street Group", "https://www.myvisajobs.com/employer/jane-street-group/"]] },
+
+        { name: "Citadel", legal: "Citadel Enterprise Americas / Citadel Americas / Citadel Securities Americas", cat: "trading",
+          lca: 39, metric: "39", metricWhat: "LCA entre las tres entidades en FY2022–FY2024 (no se localizaron cifras FY2025 en MyVisaJobs)",
+          sub: "<b>138 certificaciones laborales de green card</b> — la señal de ruta permanente más fuerte entre las firmas de trading.",
+          salary: null, salaryWhat: "",
+          roles: ["Software Engineer", "Quantitative Researcher", "Quant Developer"],
+          signal: "Intercambia volumen H-1B por patrocinio de green card: presenta pocos H-1B pero convierte a residencia con salarios muy altos. Para verificarlo hay que sumar sus tres entidades legales por separado.",
+          flags: [{ t: "good", txt: "Ruta a green card fuerte (138 certificaciones)" }],
+          src: [["MyVisaJobs · Citadel Enterprise Americas", "https://www.myvisajobs.com/employer/citadel-enterprise-americas/"], ["MyVisaJobs · Citadel Securities Americas", "https://www.myvisajobs.com/employer/citadel-securities-americas/"]] },
+
+        { name: "Hudson River Trading", legal: "Hudson River Trading LLC", cat: "trading",
+          lca: 28, metric: "28", metricWhat: "LCA presentadas en FY2025",
+          sub: "<b>24 peticiones I-129</b> en FY2025, las 24 aprobadas (100%).",
+          salary: null, salaryWhat: "",
+          roles: ["Software Engineer (trading algorítmico)", "Quant Developer"],
+          signal: "Presentador pequeño pero constante año tras año, con aprobación total en FY2025. Trading algorítmico puro: ingeniería de baja latencia.",
+          flags: [{ t: "good", txt: "100% de aprobación I-129 en FY2025" }],
+          src: [["MyVisaJobs · Hudson River Trading", "https://www.myvisajobs.com/employer/hudson-river-trading/"]] },
+
+        { name: "Cognizant", legal: "Cognizant Technology Solutions U.S. Corp", cat: "consult",
+          lca: null, metric: "6,321", metricWhat: "beneficiarios H-1B aprobados por USCIS en FY2024. Sus LCA FY2025 conflictúan entre fuentes: 10,385 (Ellis) vs 3,436 (Storyboard18)",
+          sub: "Solo en Texas, FY2025: 2,037 LCA con salario promedio de $112,344.",
+          salary: 112344, salaryWhat: "promedio de sus 2,037 LCA de Texas en FY2025",
+          roles: ["Software Engineer", "QA Engineer", "Computer Systems Analyst"],
+          signal: "El patrocinador de servicios IT de mayor volumen de la lista — y el de mayor riesgo ahora mismo. En septiembre de 2026 el DOL suspendió sus NUEVOS trámites PERM (green card) en medio de una investigación de fraude de visas; el programa H-1B no fue suspendido. Antes: un jurado federal (oct 2024) halló discriminación intencional contra trabajadores H-1B no indios y en abr 2026 hubo un veredicto de $8.4M por represalias. Trátala como opción de alto volumen y alto riesgo, con la ruta a green card actualmente dañada.",
+          flags: [{ t: "danger", txt: "PERM (green card) suspendido — sept. 2026" }, { t: "danger", txt: "Bajo investigación federal de fraude de visas" }, { t: "warn", txt: "Cifras FY2025 en conflicto entre fuentes" }],
+          src: [["Storyboard18 · suspensión PERM de Cognizant", "https://www.storyboard18.com/brand-marketing/cognizant-barred-from-new-us-green-card-filings-amid-visa-fraud-investigation-110208.htm"], ["VisaVerge · caso Cognizant/DOL", "https://www.visaverge.com/h1b/h1b-outsourcing-cognizant-verdict-dol-tata-infosys/"]] }
+      ];
+
+      /* SEVP CY2019 (ICE, "SEVIS by the Numbers") — top empleadores STEM OPT, active student count.
+         Evidencia gubernamental, no política de hiring. Leída 2026-10-06 (texto extraído del PDF oficial; fetch directo dio 403). */
+      var OPT_EMPLOYERS = [
+        { name: "Amazon", nums: "2,431 en STEM OPT · 2,086 en CPT", what: "SEVP CY2019 · #1 en ambas listas",
+          p: "Es el mayor empleador reportado por SEVP tanto en STEM OPT como en CPT. También es el #1 en empleo inicial H-1B FY2025 (4,644 aprobaciones NFAP). Aun así, <b>no se encontró una política OPT explícita en su FAQ oficial de University Talent</b> (revisado en vivo 2026-10-06): el dato es empleo reportado, no promesa.",
+          src: [["ICE/SEVP · SEVIS by the Numbers CY2019 (PDF)", "https://www.ice.gov/doclib/sevis/btn/20_0903_hsi_sevp-cy19-sevis-btn.pdf"]] },
+        { name: "Google", nums: "955 en STEM OPT · 1,158 en CPT", what: "SEVP CY2019",
+          p: "Aparece alto en ambas autorizaciones. No se encontró en esta sesión una página oficial de Google que declare una política OPT específica; el respaldo aquí es el conteo SEVP, no una FAQ de la empresa.",
+          src: [["ICE/SEVP · SEVIS by the Numbers CY2019 (PDF)", "https://www.ice.gov/doclib/sevis/btn/20_0903_hsi_sevp-cy19-sevis-btn.pdf"]] },
+        { name: "Microsoft", nums: "700 en STEM OPT · 730 en CPT", what: "SEVP CY2019",
+          p: "Volumen alto y parejo en STEM OPT y CPT. En H-1B, ojo: la mayoría de su volumen son renovaciones (78% según su portavoz en 2025), así que la pregunta útil es por el equipo que contrata, no por la marca global.",
+          src: [["ICE/SEVP · SEVIS by the Numbers CY2019 (PDF)", "https://www.ice.gov/doclib/sevis/btn/20_0903_hsi_sevp-cy19-sevis-btn.pdf"]] },
+        { name: "Intel", nums: "690 en STEM OPT · 530 en CPT", what: "SEVP CY2019",
+          p: "No está en las 30 H-1B de abajo, pero sí es un empleador STEM OPT/CPT grande según SEVP. Útil como radar OPT adicional; verifica el rol concreto y E-Verify antes de apostar tu ventana.",
+          src: [["ICE/SEVP · SEVIS by the Numbers CY2019 (PDF)", "https://www.ice.gov/doclib/sevis/btn/20_0903_hsi_sevp-cy19-sevis-btn.pdf"]] },
+        { name: "Deloitte", nums: "676 en STEM OPT · 672 en CPT", what: "SEVP CY2019",
+          p: "Consultoría: emplea mucho en OPT/STEM OPT según SEVP, pero el modelo suele ser colocación en cliente. No se encontró una política OPT explícita en su página oficial en esta sesión; el dato es conteo SEVP.",
+          src: [["ICE/SEVP · SEVIS by the Numbers CY2019 (PDF)", "https://www.ice.gov/doclib/sevis/btn/20_0903_hsi_sevp-cy19-sevis-btn.pdf"]] },
+        { name: "Meta (Facebook)", nums: "612 en STEM OPT · 1,090 en CPT", what: "SEVP CY2019 (como Facebook)",
+          p: "En CY2019 SEVP lo lista como Facebook. Fuerte en CPT y STEM OPT. En H-1B mantiene salarios altos en data (útil en la lotería ponderada FY2027) y carga la marca regulatoria “H-1B Dependent”.",
+          src: [["ICE/SEVP · SEVIS by the Numbers CY2019 (PDF)", "https://www.ice.gov/doclib/sevis/btn/20_0903_hsi_sevp-cy19-sevis-btn.pdf"]] },
+        { name: "Apple", nums: "378 en STEM OPT · 323 en CPT", what: "SEVP CY2019",
+          p: "Hardware + software + ML. Conteo SEVP menor que Amazon/Google/Microsoft, pero presente en ambas listas; en H-1B su volumen es grande y constante.",
+          src: [["ICE/SEVP · SEVIS by the Numbers CY2019 (PDF)", "https://www.ice.gov/doclib/sevis/btn/20_0903_hsi_sevp-cy19-sevis-btn.pdf"]] },
+        { name: "IBM", nums: "373 en STEM OPT · 340 en CPT", what: "SEVP CY2019",
+          p: "Híbrido consultoría/producto. Aparece en ambas listas SEVP y mantiene avisos LCA públicos activos en 2026; verifica siempre el nombre legal y el equipo.",
+          src: [["ICE/SEVP · SEVIS by the Numbers CY2019 (PDF)", "https://www.ice.gov/doclib/sevis/btn/20_0903_hsi_sevp-cy19-sevis-btn.pdf"]] },
+        { name: "Goldman Sachs", nums: "301 en STEM OPT · 288 en CPT", what: "SEVP CY2019",
+          p: "Para tu dirección finanzas + datos es el cruce bancario más claro en SEVP: emplea estudiantes en STEM OPT/CPT y patrocina H-1B en su división de ingeniería. No se encontró una política OPT explícita en su página oficial en esta sesión.",
+          src: [["ICE/SEVP · SEVIS by the Numbers CY2019 (PDF)", "https://www.ice.gov/doclib/sevis/btn/20_0903_hsi_sevp-cy19-sevis-btn.pdf"]] },
+        { name: "JPMorgan Chase", nums: "270 en STEM OPT · 254 en CPT", what: "SEVP CY2019",
+          p: "El banco con más músculo tech de la lista. Conteo SEVP presente en ambas categorías y 553 aprobaciones H-1B de empleo inicial en FY2025: hay puente después del OPT.",
+          src: [["ICE/SEVP · SEVIS by the Numbers CY2019 (PDF)", "https://www.ice.gov/doclib/sevis/btn/20_0903_hsi_sevp-cy19-sevis-btn.pdf"]] }
+      ];
+
+      /* Empresas de las 30 que aparecen en el top-25 STEM OPT de SEVP CY2019.
+         La etiqueta NO significa “contrata OPT hoy”: significa “SEVP CY2019 ya los mostraba empleando estudiantes en STEM OPT”. */
+      var OPT_SET = {
+        "Amazon": true, "Google": true, "Microsoft": true, "Meta": true, "Apple": true,
+        "IBM": true, "Deloitte Consulting": true, "Goldman Sachs": true, "JPMorgan Chase": true, "Citibank": true
+      };
+
+      var CAP_EXEMPT = [
+        { name: "MIT", big: "286", what: "LCA en FY2025 · 170 I-129 (168 aprobadas)",
+          p: "Salario mediano LCA 2025: <b>$156,200</b>. Personal de investigación e ingenieros de IS&T. Entre FY2022–FY2024 sumó 707 LCA.",
+          src: [["MyVisaJobs · MIT", "https://www.myvisajobs.com/employer/massachusetts-institute-technology/"]] },
+        { name: "UC San Francisco", big: "374", what: "LCA en FY2025",
+          p: "El mayor presentador cap-exempt de esta selección. Investigación en ciencias de la salud: cómputo científico, bioestadística, datos clínicos. FY2022–FY2024: 1,025 LCA.",
+          src: [["scale.jobs · ranking cap-exempt", "https://scale.jobs/blog/cap-exempt-h1b-jobs-complete-list-employers-skip-lottery"]] },
+        { name: "Carnegie Mellon University", big: "132", what: "LCA en FY2025 · 99 I-129 (96 aprobadas)",
+          p: "Potencia en IA/ML: research software engineers y personal de laboratorio en una de las escuelas de computación más fuertes del país.",
+          src: [["MyVisaJobs · CMU", "http://myvisajobs.com/employer/carnegie-mellon-university/"]] },
+        { name: "Lawrence Berkeley National Lab", big: "155", what: "LCA en FY2025",
+          p: "Laboratorio nacional del DOE: ciencia de datos y cómputo científico a gran escala. FY2022–FY2024: 480 LCA.",
+          src: [["scale.jobs · ranking cap-exempt", "https://scale.jobs/blog/cap-exempt-h1b-jobs-complete-list-employers-skip-lottery"]] },
+        { name: "NIH", big: "263", what: "LCA en FY2024 en ciencias de la vida/físicas/sociales",
+          p: "National Institutes of Health (gobierno federal): postdocs y científicos de staff. Salario promedio observado: <b>$110,333</b>.",
+          src: [["MyVisaJobs · reporte por ocupación", "https://www.myvisajobs.com/reports/h1b/occupation/life,-physical,-and-social-science-19/"]] },
+        { name: "SLAC National Accelerator Lab", big: "105", what: "LCA en FY2025",
+          p: "Laboratorio nacional del DOE operado por Stanford: física de partículas y cómputo científico de alto rendimiento.",
+          src: [["MyVisaJobs · SLAC", "https://www.myvisajobs.com/employer/leland-stanford-jr-univ-slac-national-accelerator-lab/"]] }
+      ];
+
+      /* Top 10 por LCA FY2025 — misma fuente (MyVisaJobs), mismo año fiscal. */
+      var CHART_DATA = [
+        ["Amazon", 15529], ["Microsoft", 9362], ["Google", 8945], ["Apple", 7040],
+        ["Meta", 6629], ["Deloitte", 4286], ["IBM", 3095], ["Accenture", 2921],
+        ["NVIDIA", 1905], ["Citibank", 1400]
+      ];
+
+      function esc(s) {
+        return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+      }
+      function fmt(n) { return n.toLocaleString("en-US"); }
+
+      /* ---------- Gráfico SVG: barras horizontales, escala desde cero ---------- */
+      (function buildChart() {
+        var max = 16000, W = 700, labelW = 128, plotW = W - labelW - 64;
+        var rowH = 27, top = 6, H = top + CHART_DATA.length * rowH + 26;
+        var ticks = [0, 4000, 8000, 12000, 16000];
+        var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Gráfico de barras: LCA presentadas en FY2025 por empresa">';
+        ticks.forEach(function (t) {
+          var x = labelW + (t / max) * plotW;
+          s += '<line x1="' + x + '" y1="' + top + '" x2="' + x + '" y2="' + (H - 24) + '" stroke="var(--line)" stroke-width="1"/>';
+          s += '<text x="' + x + '" y="' + (H - 8) + '" text-anchor="middle" font-size="10.5" fill="var(--muted)" font-family="IBM Plex Mono, monospace">' + fmt(t) + '</text>';
+        });
+        CHART_DATA.forEach(function (d, i) {
+          var y = top + i * rowH;
+          var w = Math.max(2, (d[1] / max) * plotW);
+          s += '<text x="' + (labelW - 8) + '" y="' + (y + 15) + '" text-anchor="end" font-size="12" font-weight="600" fill="var(--ink)">' + esc(d[0]) + '</text>';
+          s += '<rect x="' + labelW + '" y="' + (y + 3) + '" width="' + w + '" height="17" rx="3" fill="var(--accent)" opacity="' + (i === 0 ? "1" : "0.78") + '"/>';
+          s += '<text x="' + (labelW + w + 7) + '" y="' + (y + 16) + '" font-size="11.5" font-family="IBM Plex Mono, monospace" font-weight="600" fill="var(--ink)">' + fmt(d[1]) + '</text>';
+        });
+        s += '</svg>';
+        document.getElementById("chart").innerHTML = s;
+      })();
+
+      /* ---------- Tarjetas de empresas ---------- */
+      var grid = document.getElementById("grid");
+      var emptyBox = document.getElementById("empty");
+      var countLine = document.getElementById("countLine");
+      var state = { cat: "all", q: "", sort: "lca", optOnly: false };
+
+      function cardHTML(c) {
+        var cat = CATS[c.cat];
+        var h = '<article class="card">';
+        h += '<div class="card-top"><div><h3>' + esc(c.name) + '</h3><div class="legal">' + esc(c.legal) + '</div></div>';
+        h += '<span class="cat"><span class="dot" style="background:' + cat.color + '"></span>' + esc(cat.label) + '</span></div>';
+        h += '<div class="metric"><span class="big">' + esc(c.metric) + '</span><span class="what">' + esc(c.metricWhat) + '</span></div>';
+        if (c.sub) h += '<p class="substats">' + c.sub + '</p>';
+        if (c.salary) h += '<p class="salary">Salario típico observado: <b>$' + fmt(c.salary) + '</b> <span style="color:var(--muted)">(' + esc(c.salaryWhat) + ')</span></p>';
+        if (c.roles && c.roles.length) {
+          h += '<ul class="roles">' + c.roles.map(function (r) { return '<li>' + esc(r) + '</li>'; }).join("") + '</ul>';
+        }
+        h += '<p class="signal"><span class="lbl">La señal</span>' + c.signal + '</p>';
+        var allFlags = (c.flags || []).slice();
+        if (OPT_SET[c.name]) allFlags.unshift({ t: "good", txt: "En top STEM OPT SEVP CY2019" });
+        if (allFlags.length) {
+          h += '<div class="flags">' + allFlags.map(function (f) { return '<span class="flag ' + f.t + '">' + esc(f.txt) + '</span>'; }).join("") + '</div>';
+        }
+        h += '<p class="src">Fuente: ' + c.src.map(function (s) { return '<a href="' + s[1] + '" target="_blank" rel="noopener">' + esc(s[0]) + '</a>'; }).join(" · ") + '</p>';
+        h += '</article>';
+        return h;
+      }
+
+      function render() {
+        var q = state.q.trim().toLowerCase();
+        var list = COMPANIES.filter(function (c) {
+          if (state.cat !== "all" && c.cat !== state.cat) return false;
+          if (state.optOnly && !OPT_SET[c.name]) return false;
+          if (!q) return true;
+          var hay = (c.name + " " + c.legal + " " + (c.roles || []).join(" ") + " " + c.signal).toLowerCase();
+          return hay.indexOf(q) !== -1;
+        });
+        list.sort(function (a, b) {
+          if (state.sort === "name") return a.name.localeCompare(b.name, "es");
+          if (state.sort === "salary") {
+            if (a.salary == null && b.salary == null) return 0;
+            if (a.salary == null) return 1;
+            if (b.salary == null) return -1;
+            return b.salary - a.salary;
+          }
+          if (a.lca == null && b.lca == null) return 0;
+          if (a.lca == null) return 1;
+          if (b.lca == null) return -1;
+          return b.lca - a.lca;
+        });
+        grid.innerHTML = list.map(cardHTML).join("");
+        emptyBox.hidden = list.length !== 0;
+        var catTxt = state.cat === "all" ? "todos los bloques" : CATS[state.cat].label;
+        countLine.innerHTML = "Mostrando <strong>" + list.length + " de " + COMPANIES.length + " empresas</strong> · " + esc(catTxt) +
+          (state.optOnly ? " · solo en top STEM OPT SEVP CY2019" : "") +
+          (q ? ' · búsqueda: «' + esc(state.q.trim()) + '»' : "") + " · datos H-1B observados el 5-oct-2026 · OPT verificado el 6-oct-2026 (SEVP CY2019 + páginas oficiales)";
+      }
+
+      /* Chips de categoría */
+      var chipsBox = document.getElementById("chips");
+      var chipDefs = [["all", "Todas"]].concat(Object.keys(CATS).map(function (k) { return [k, CATS[k].label]; }));
+      chipsBox.innerHTML = chipDefs.map(function (d) {
+        var dot = d[0] === "all" ? "" : '<span class="dot" style="background:' + CATS[d[0]].color + '"></span>';
+        return '<button type="button" class="chip" data-cat="' + d[0] + '" aria-pressed="' + (d[0] === "all") + '">' + dot + esc(d[1]) + '</button>';
+      }).join("");
+      chipsBox.addEventListener("click", function (e) {
+        var btn = e.target.closest(".chip");
+        if (!btn) return;
+        state.cat = btn.getAttribute("data-cat");
+        chipsBox.querySelectorAll(".chip").forEach(function (b) {
+          b.setAttribute("aria-pressed", b === btn ? "true" : "false");
+        });
+        render();
+      });
+
+      document.getElementById("q").addEventListener("input", function (e) { state.q = e.target.value; render(); });
+      document.getElementById("sort").addEventListener("change", function (e) { state.sort = e.target.value; render(); });
+      var optToggle = document.getElementById("optToggle");
+      optToggle.addEventListener("click", function () {
+        state.optOnly = !state.optOnly;
+        optToggle.setAttribute("aria-pressed", state.optOnly ? "true" : "false");
+        render();
+      });
+      render();
+
+      /* ---------- Empleadores OPT ---------- */
+      var optGrid = document.getElementById("optGrid");
+      if (optGrid) {
+        optGrid.innerHTML = OPT_EMPLOYERS.map(function (c) {
+          return '<article class="opt-card"><h3>' + esc(c.name) + '</h3>' +
+            '<div class="nums">' + esc(c.nums) + '</div><div class="what">' + esc(c.what) + '</div>' +
+            '<p>' + c.p + '</p>' +
+            '<p class="src">Fuente: ' + c.src.map(function (s) { return '<a href="' + s[1] + '" target="_blank" rel="noopener">' + esc(s[0]) + '</a>'; }).join(" · ") + '</p></article>';
+        }).join("");
+      }
+
+      /* ---------- Cap-exempt ---------- */
+      document.getElementById("capGrid").innerHTML = CAP_EXEMPT.map(function (c) {
+        return '<article class="cap-card"><h3>' + esc(c.name) + '</h3>' +
+          '<div><span class="big">' + esc(c.big) + '</span> <span class="what">' + esc(c.what) + '</span></div>' +
+          '<p>' + c.p + '</p>' +
+          '<p class="src">Fuente: ' + c.src.map(function (s) { return '<a href="' + s[1] + '" target="_blank" rel="noopener">' + esc(s[0]) + '</a>'; }).join(" · ") + '</p></article>';
+      }).join("");
+    </script>
+  </body>
+</html>
