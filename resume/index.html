@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>Resume</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,650;6..72,800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #f4f6f4;
+        --surface: #ffffff;
+        --ink: #15212b;
+        --ink-2: #3d4f5e;
+        --muted: #67798a;
+        --line: #d9e0da;
+        --accent: #0d6e4a;
+        --accent-ink: #0a5a3d;
+        --accent-soft: #e2f1e8;
+        --warn-soft: #fbf0d3;
+        --warn: #8a5a00;
+        --shadow: 0 1px 2px rgba(21,33,43,.05), 0 8px 24px -12px rgba(21,33,43,.18);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0d141a;
+          --surface: #15212b;
+          --ink: #e9eff3;
+          --ink-2: #b8c7d2;
+          --muted: #8fa3b2;
+          --line: #26363f;
+          --accent: #3ec98f;
+          --accent-ink: #6fdcae;
+          --accent-soft: #123527;
+          --warn-soft: #3a2c10;
+          --warn: #e5b95c;
+          --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 28px -14px rgba(0,0,0,.6);
+        }
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "IBM Plex Sans", system-ui, sans-serif;
+        font-size: 15.5px;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+      }
+      a { color: var(--accent-ink); }
+      .bar {
+        max-width: 860px; margin: 0 auto; padding: 18px 16px 0;
+        display: flex; gap: 10px; justify-content: space-between; align-items: center; flex-wrap: wrap;
+        font-size: .88rem; color: var(--muted);
+      }
+      .bar button {
+        font: inherit; font-weight: 600; color: var(--surface); background: var(--accent);
+        border: 0; border-radius: 8px; padding: 8px 14px; cursor: pointer;
+      }
+      .page {
+        max-width: 860px; margin: 14px auto 48px; background: var(--surface);
+        border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow);
+        padding: 40px 44px;
+      }
+      header h1 {
+        font-family: "Newsreader", Georgia, serif; font-weight: 800;
+        font-size: clamp(1.9rem, 5vw, 2.6rem); line-height: 1.05; margin: 0 0 4px;
+      }
+      header .label { font-size: 1.05rem; color: var(--accent-ink); font-weight: 600; margin: 0 0 10px; }
+      .contact { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: .9rem; color: var(--ink-2); margin: 0; padding: 0; list-style: none; }
+      .contact a { color: inherit; }
+      .summary { margin: 16px 0 0; color: var(--ink-2); max-width: 72ch; }
+      section { margin-top: 26px; }
+      section h2 {
+        font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+        color: var(--accent-ink); margin: 0 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--line);
+      }
+      .item { margin-bottom: 14px; break-inside: avoid; }
+      .item:last-child { margin-bottom: 0; }
+      .row { display: flex; justify-content: space-between; gap: 4px 16px; flex-wrap: wrap; }
+      .title { font-weight: 700; }
+      .sub { color: var(--ink-2); }
+      .when { font-family: "IBM Plex Mono", monospace; font-size: .8rem; color: var(--muted); white-space: nowrap; }
+      .item p { margin: 4px 0 0; color: var(--ink-2); }
+      .item ul { margin: 6px 0 0; padding-left: 18px; color: var(--ink-2); }
+      .item li + li { margin-top: 2px; }
+      .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+      .tag { font-size: .78rem; background: var(--accent-soft); color: var(--accent-ink); border-radius: 999px; padding: 2px 9px; }
+      .skills { display: grid; grid-template-columns: 140px 1fr; gap: 6px 16px; }
+      .skills dt { font-weight: 700; }
+      .skills dd { margin: 0; color: var(--ink-2); }
+      .placeholder { background: var(--warn-soft); color: var(--warn); border-radius: 4px; padding: 0 3px; }
+      .notice { max-width: 860px; margin: 40px auto; padding: 0 16px; color: var(--ink-2); }
+      @media (max-width: 640px) {
+        .page { padding: 24px 18px; border-radius: 0; border-left: 0; border-right: 0; }
+        .skills { grid-template-columns: 1fr; gap: 2px; }
+        .skills dd { margin-bottom: 8px; }
+      }
+      @media print {
+        :root { --bg: #fff; --surface: #fff; --ink: #000; --ink-2: #222; --muted: #555; --line: #ccc; --accent-ink: #0a5a3d; --accent-soft: #eef5f0; }
+        @page { size: letter; margin: 0.5in; }
+        body { font-size: 10.5pt; }
+        .bar { display: none; }
+        .page { margin: 0; padding: 0; border: 0; box-shadow: none; max-width: none; }
+        section { margin-top: 14px; }
+        a { color: inherit; text-decoration: none; }
+        .placeholder { background: none; color: inherit; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bar">
+      <span id="updated"></span>
+      <button type="button" onclick="window.print()">Download PDF</button>
+    </div>
+    <main class="page" id="cv" aria-live="polite">Loading…</main>
+
+    <script>
+      // All content comes from resume.json (JSON Resume schema). Edit that file, not this one.
+      const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+      // Text wrapped in [brackets] is a placeholder still to fill; highlight it on screen.
+      const txt = (s) => esc(s).replace(/\[([^\]]+)\]/g, '<span class="placeholder">[$1]</span>');
+      const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      const fmtDate = (d) => {
+        const m = /^(\d{4})-(\d{2})/.exec(d || "");
+        return m ? `${MONTHS[+m[2] - 1]} ${m[1]}` : txt(d);
+      };
+      const range = (a, b) => (!a ? (b ? fmtDate(b) : "") : `${fmtDate(a)} – ${b ? fmtDate(b) : "Present"}`);
+      const has = (arr) => Array.isArray(arr) && arr.length > 0;
+      const list = (arr) => (has(arr) ? `<ul>${arr.map((h) => `<li>${txt(h)}</li>`).join("")}</ul>` : "");
+      const tags = (arr) => (has(arr) ? `<div class="tags">${arr.map((k) => `<span class="tag">${txt(k)}</span>`).join("")}</div>` : "");
+      const section = (title, body) => (body ? `<section><h2>${title}</h2>${body}</section>` : "");
+      const safeUrl = (u) => (/^(https?:|mailto:|tel:)/i.test(u || "") ? esc(u) : "");
+
+      function render(r) {
+        const b = r.basics || {};
+        const loc = b.location || {};
+        const contact = [
+          [loc.city, loc.region].filter(Boolean).map(txt).join(", "),
+          b.email && `<a href="${safeUrl("mailto:" + b.email)}">${txt(b.email)}</a>`,
+          b.phone && `<a href="${safeUrl("tel:" + b.phone)}">${txt(b.phone)}</a>`,
+          b.url && `<a href="${safeUrl(b.url)}">${esc(b.url.replace(/^https?:\/\//, ""))}</a>`,
+          ...(b.profiles || []).filter((p) => p.url).map((p) => `<a href="${safeUrl(p.url)}">${esc(p.network)}</a>`),
+        ].filter(Boolean);
+
+        const work = (r.work || []).map((w) => `
+          <div class="item">
+            <div class="row"><span><span class="title">${txt(w.position)}</span> · <span class="sub">${txt(w.name)}${w.location ? ", " + txt(w.location) : ""}</span></span><span class="when">${range(w.startDate, w.endDate)}</span></div>
+            ${w.summary ? `<p>${txt(w.summary)}</p>` : ""}${list(w.highlights)}
+          </div>`).join("");
+
+        const projects = (r.projects || []).map((p) => `
+          <div class="item">
+            <div class="row"><span class="title">${p.url ? `<a href="${safeUrl(p.url)}">${txt(p.name)}</a>` : txt(p.name)}</span><span class="when">${range(p.startDate, p.endDate)}</span></div>
+            ${p.description ? `<p>${txt(p.description)}</p>` : ""}${list(p.highlights)}${tags(p.keywords)}
+          </div>`).join("");
+
+        const education = (r.education || []).map((e) => `
+          <div class="item">
+            <div class="row"><span><span class="title">${txt([e.studyType, e.area].filter(Boolean).join(", "))}</span> · <span class="sub">${txt(e.institution)}${e.location ? ", " + txt(e.location) : ""}</span></span><span class="when">${range(e.startDate, e.endDate)}</span></div>
+            ${e.score ? `<p>GPA: ${txt(e.score)}</p>` : ""}${has(e.courses) ? `<p>Relevant coursework: ${e.courses.map(txt).join(", ")}</p>` : ""}
+          </div>`).join("");
+
+        const skills = has(r.skills)
+          ? `<dl class="skills">${r.skills.map((s) => `<dt>${txt(s.name)}</dt><dd>${(s.keywords || []).map(txt).join(" · ")}</dd>`).join("")}</dl>`
+          : "";
+
+        const certs = (r.certificates || []).map((c) => `
+          <div class="item"><div class="row"><span><span class="title">${c.url ? `<a href="${safeUrl(c.url)}">${txt(c.name)}</a>` : txt(c.name)}</span>${c.issuer ? ` · <span class="sub">${txt(c.issuer)}</span>` : ""}</span><span class="when">${c.date ? fmtDate(c.date) : ""}</span></div></div>`).join("");
+
+        const langs = has(r.languages) ? `<p class="sub" style="margin:0">${r.languages.map((l) => `${txt(l.language)}${l.fluency ? ` (${txt(l.fluency)})` : ""}`).join(" · ")}</p>` : "";
+
+        document.title = `${b.name || "Resume"} — Resume`;
+        document.getElementById("cv").innerHTML = `
+          <header>
+            <h1>${txt(b.name)}</h1>
+            ${b.label ? `<p class="label">${txt(b.label)}</p>` : ""}
+            <ul class="contact">${contact.map((c) => `<li>${c}</li>`).join("")}</ul>
+            ${b.summary ? `<p class="summary">${txt(b.summary)}</p>` : ""}
+          </header>
+          ${section("Experience", work)}
+          ${section("Projects", projects)}
+          ${section("Education", education)}
+          ${section("Skills", skills)}
+          ${section("Certifications", certs)}
+          ${section("Languages", langs)}`;
+
+        const mod = r.meta && r.meta.lastModified;
+        document.getElementById("updated").textContent = mod ? `Updated ${mod}` : "";
+      }
+
+      fetch("resume.json", { cache: "no-cache" })
+        .then((res) => { if (!res.ok) throw new Error(res.status); return res.json(); })
+        .then(render)
+        .catch(() => {
+          document.getElementById("cv").outerHTML =
+            '<p class="notice">Could not load <code>resume.json</code>. If you opened this file directly from disk, serve the folder instead (for example <code>python3 -m http.server</code>) or view it on GitHub Pages.</p>';
+        });
+    </script>
+  </body>
+</html>

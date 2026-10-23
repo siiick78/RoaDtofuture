@@ -1,0 +1,65 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+  "basics": {
+    "name": "[Your Name]",
+    "label": "[Target role — e.g. Data Analyst · F-1 STEM student]",
+    "email": "[you@example.com]",
+    "phone": "",
+    "url": "",
+    "summary": "[2–3 lines: what you study, what you build, and the role you are looking for. Mention work authorization: F-1, eligible for CPT/OPT.]",
+    "location": {
+      "city": "[City]",
+      "region": "[State]",
+      "countryCode": "US"
+    },
+    "profiles": [
+      { "network": "LinkedIn", "username": "", "url": "" },
+      { "network": "GitHub", "username": "siiick78", "url": "https://github.com/siiick78" }
+    ]
+  },
+  "work": [
+    {
+      "name": "[Company]",
+      "position": "[Position]",
+      "location": "[City, State]",
+      "startDate": "2024-01",
+      "endDate": "",
+      "highlights": [
+        "[Achievement with a number — e.g. Reduced report time 40% by automating X with Python]"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Atlantis University",
+      "area": "[Major]",
+      "studyType": "[Degree]",
+      "location": "Miami, FL",
+      "startDate": "",
+      "endDate": "[Expected graduation]",
+      "score": "",
+      "courses": []
+    }
+  ],
+  "projects": [
+    {
+      "name": "[Portfolio project]",
+      "description": "[What it does, in one line]",
+      "url": "",
+      "keywords": ["SQL", "Python"],
+      "highlights": ["[Result or what you learned]"]
+    }
+  ],
+  "skills": [
+    { "name": "Data", "keywords": ["SQL", "Python", "Excel"] },
+    { "name": "Tools", "keywords": ["Git", "GitHub"] }
+  ],
+  "certificates": [],
+  "languages": [
+    { "language": "Spanish", "fluency": "Native" },
+    { "language": "English", "fluency": "[Professional]" }
+  ],
+  "meta": {
+    "lastModified": "2026-10-23"
+  }
+}
