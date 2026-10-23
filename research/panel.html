@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>Panel H-1B — empresas</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #f4f6f4; --surface: #ffffff; --surface-2: #eef1ee;
+        --ink: #15212b; --ink-2: #3d4f5e; --muted: #67798a; --line: #d9e0da;
+        --accent: #0d6e4a; --accent-ink: #0a5a3d; --accent-soft: #e2f1e8;
+        --warn: #8a5a00; --warn-soft: #fbf0d3;
+        --danger: #a1261c; --danger-soft: #fbe7e3;
+        --shadow: 0 1px 2px rgba(21,33,43,.05), 0 8px 24px -12px rgba(21,33,43,.18);
+        --tA: #0d6e4a; --tB: #2f5d8a; --tC: #8a5a00;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0d141a; --surface: #15212b; --surface-2: #1b2a36;
+          --ink: #e9eff3; --ink-2: #b8c7d2; --muted: #8fa3b2; --line: #26363f;
+          --accent: #3ec98f; --accent-ink: #6fdcae; --accent-soft: #123527;
+          --warn: #e5b95c; --warn-soft: #3a2c10;
+          --danger: #f0937f; --danger-soft: #3d1d18;
+          --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 28px -14px rgba(0,0,0,.6);
+          --tA: #3ec98f; --tB: #7fb0dd; --tC: #e5b95c;
+        }
+      }
+      * { box-sizing: border-box; }
+      body { margin: 0; background: var(--bg); color: var(--ink); font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 15px; line-height: 1.5; }
+      .wrap { max-width: 1140px; margin: 0 auto; padding: 24px 16px 56px; }
+      h1 { font-size: clamp(1.4rem, 3.6vw, 2rem); margin: 0 0 6px; line-height: 1.15; }
+      .sub { color: var(--ink-2); margin: 0 0 16px; max-width: 75ch; }
+      .notice { background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 12px 14px; font-size: .9rem; margin: 0 0 18px; }
+      .notice strong { color: var(--ink); }
+
+      .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 18px; }
+      .kpi { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; box-shadow: var(--shadow); }
+      .kpi .n { font-size: 1.6rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+      .kpi .l { color: var(--muted); font-size: .8rem; }
+
+      .controls { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px; display: grid; gap: 12px; margin-bottom: 16px; box-shadow: var(--shadow); }
+      .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+      .row > span.lbl { color: var(--muted); font-size: .8rem; width: 64px; }
+      input[type=search], select {
+        font: inherit; color: var(--ink); background: var(--surface-2); border: 1px solid var(--line);
+        border-radius: 8px; padding: 8px 10px; min-width: 0;
+      }
+      input[type=search] { flex: 1 1 220px; }
+      .seg { display: inline-flex; flex-wrap: wrap; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+      .seg button, .chip {
+        font: inherit; font-size: .86rem; background: var(--surface-2); color: var(--ink-2);
+        border: 0; padding: 7px 11px; cursor: pointer; border-right: 1px solid var(--line);
+      }
+      .seg button:last-child { border-right: 0; }
+      .seg button[aria-pressed="true"], .chip[aria-pressed="true"] { background: var(--accent); color: #fff; }
+      .chip { border: 1px solid var(--line); border-radius: 999px; border-right: 1px solid var(--line); }
+      .chip.tA[aria-pressed="true"] { background: var(--tA); }
+      .chip.tB[aria-pressed="true"] { background: var(--tB); }
+      .chip.tC[aria-pressed="true"] { background: var(--tC); }
+      .hint { color: var(--muted); font-size: .8rem; }
+
+      .layout { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+      .card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); padding: 14px; }
+      .card h2 { font-size: .95rem; margin: 0 0 10px; color: var(--ink-2); font-weight: 600; }
+      .bars { display: grid; gap: 4px; }
+      .bar {
+        display: grid; grid-template-columns: minmax(0, 1fr) 54px; gap: 4px 10px; align-items: center;
+        width: 100%; text-align: left; font: inherit; color: inherit; background: none; border: 1px solid transparent;
+        border-radius: 8px; padding: 6px 8px; cursor: pointer;
+      }
+      .bar:hover { background: var(--surface-2); }
+      .bar[aria-selected="true"] { border-color: var(--accent); background: var(--accent-soft); }
+      .bar .name { font-size: .9rem; min-width: 0; overflow-wrap: anywhere; }
+      .layout > * { min-width: 0; }
+      .bar .val { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; font-size: .9rem; }
+      .track { grid-column: 1 / -1; height: 7px; background: var(--surface-2); border-radius: 99px; overflow: hidden; }
+      .fill { height: 100%; border-radius: 99px; background: var(--accent); transition: width .35s ease; }
+      .badge { display: inline-block; font-size: .7rem; font-weight: 700; letter-spacing: .03em; border-radius: 6px; padding: 1px 6px; margin-left: 6px; vertical-align: 1px; color: #fff; }
+      .badge.tA { background: var(--tA); } .badge.tB { background: var(--tB); } .badge.tC { background: var(--tC); }
+      .badge.cat { background: var(--surface-2); color: var(--ink-2); border: 1px solid var(--line); }
+      .empty { color: var(--muted); padding: 16px 0; }
+
+      .detail h3 { margin: 0 0 2px; font-size: 1.2rem; }
+      .detail .legal { color: var(--muted); font-size: .8rem; margin-bottom: 12px; }
+      .years { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 14px; }
+      .yr { background: var(--surface-2); border-radius: 10px; padding: 8px 10px; }
+      .yr .n { font-size: 1.15rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+      .yr .l { font-size: .75rem; color: var(--muted); }
+      .yr.partial .l::after { content: " · parcial"; color: var(--warn); }
+      .yr.q4 .l::after { content: " · solo Q4"; color: var(--warn); }
+      .tablewrap { overflow-x: auto; margin-bottom: 12px; }
+      table { width: 100%; border-collapse: collapse; font-size: .86rem; }
+      th, td { text-align: left; padding: 6px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
+      th { color: var(--muted); font-weight: 600; font-size: .78rem; }
+      td.num { text-align: right; font-variant-numeric: tabular-nums; }
+      .flag { color: var(--danger); background: var(--danger-soft); border-radius: 6px; padding: 1px 6px; font-size: .75rem; font-weight: 600; }
+      .flag.warn { color: var(--warn); background: var(--warn-soft); }
+      .quote { background: var(--surface-2); border-left: 3px solid var(--line); border-radius: 6px; padding: 8px 10px; font-size: .86rem; color: var(--ink-2); margin: 0 0 10px; }
+      .meta { font-size: .85rem; color: var(--ink-2); margin: 4px 0; }
+      .meta a { color: var(--accent-ink); }
+      .flagsRow { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 0; }
+
+      .foot { margin-top: 18px; color: var(--muted); font-size: .8rem; }
+      .nojs { color: var(--danger); }
+
+      @media (max-width: 860px) {
+        .layout { grid-template-columns: minmax(0, 1fr); }
+        .kpis { grid-template-columns: repeat(2, 1fr); }
+      }
+      @media (max-width: 480px) {
+        .wrap { padding: 16px 12px 40px; }
+        .years { grid-template-columns: repeat(2, 1fr); }
+        .row > span.lbl { width: 100%; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Panel H-1B: empresas y patrocinio</h1>
+      <p class="sub">Datos de LCA del DOL, parseados el 2026-10-22. Cada número se puede rastrear a su fila. Haz clic en una empresa para ver su detalle.</p>
+
+      <div class="notice">
+        <strong>Cobertura:</strong> FY2024 y FY2025 son solo el archivo del cuarto trimestre (Q4); FY2026 es parcial (Q1–Q3).
+        <strong>No hay datos de I-129 verificados.</strong> Las etiquetas A/B/C son una propuesta pendiente de decisión.
+      </div>
+
+      <div class="kpis" id="kpis"></div>
+
+      <div class="controls">
+        <div class="row">
+          <input type="search" id="q" placeholder="Buscar empresa o ciudad…" aria-label="Buscar empresa" />
+        </div>
+        <div class="row">
+          <span class="lbl">Año</span>
+          <div class="seg" id="yearSeg" role="group" aria-label="Año fiscal">
+            <button type="button" data-y="total" aria-pressed="true">Total</button>
+            <button type="button" data-y="fy2024" aria-pressed="false">FY24 (Q4)</button>
+            <button type="button" data-y="fy2025" aria-pressed="false">FY25 (Q4)</button>
+            <button type="button" data-y="fy2026" aria-pressed="false">FY26 (parcial)</button>
+          </div>
+          <span class="lbl" style="margin-left:8px">Ocupación</span>
+          <select id="soc" aria-label="Código SOC">
+            <option value="">Todas</option>
+            <option value="13-2051">13-2051 Analistas financieros</option>
+            <option value="13-1111">13-1111 Analistas de gestión</option>
+            <option value="15-2051">15-2051 Analistas de datos/BI</option>
+            <option value="13-2054">13-2054 Riesgo financiero</option>
+            <option value="13-1041">13-1041 Cumplimiento</option>
+            <option value="11-3031">11-3031 Finanzas/admin</option>
+          </select>
+        </div>
+        <div class="row">
+          <span class="lbl">Sector</span>
+          <div id="cats" class="row"></div>
+        </div>
+        <div class="row">
+          <span class="lbl">Grupo</span>
+          <div id="tiers" class="row"></div>
+          <span class="hint">A = declara patrocinio · B = sin exclusión encontrada · C = exclusión o no verificable</span>
+        </div>
+      </div>
+
+      <div class="layout">
+        <section class="card">
+          <h2 id="listTitle">Empresas (LCA certificadas)</h2>
+          <div class="bars" id="bars" role="listbox" aria-label="Lista de empresas"></div>
+          <p class="foot" id="excluded"></p>
+        </section>
+
+        <section class="card detail" id="detail" aria-live="polite"></section>
+      </div>
+
+      <p class="foot">
+        Fuente: DOL OFLC Performance Data (LCA_Disclosure_Data FY2024_Q4, FY2025_Q4, FY2026_Q3). Solo CASE_STATUS = Certified y los SOC de la lista.
+        Los salarios marcados como "error probable" o "revisar" no deben usarse hasta corregirse.
+      </p>
+      <noscript><p class="nojs">Este panel necesita JavaScript.</p></noscript>
+    </div>
+
+    <script>
+      // Grouping is a PROPOSAL pending the user's decision. Edit here, not in the data.
+      const META = {
+        "Citigroup":                       { cat: "Banca",       tier: "C" },
+        "JPMorgan Chase":                  { cat: "Banca",       tier: "C" },
+        "Bank of America":                 { cat: "Banca",       tier: "C" },
+        "Wells Fargo":                     { cat: "Banca",       tier: "C" },
+        "Goldman Sachs":                   { cat: "Banca",       tier: "B" },
+        "Morgan Stanley":                  { cat: "Banca",       tier: "C" },
+        "Capital One":                     { cat: "Banca",       tier: "A" },
+        "American Express":                { cat: "Banca",       tier: "C" },
+        "Visa":                            { cat: "Pagos",       tier: "C" },
+        "Mastercard":                      { cat: "Pagos",       tier: "C" },
+        "PayPal":                          { cat: "Pagos",       tier: "B" },
+        "Stripe":                          { cat: "Pagos",       tier: "B" },
+        "Affirm":                          { cat: "Pagos",       tier: "C" },
+        "Remitly":                         { cat: "Pagos",       tier: "B" },
+        "Databricks":                      { cat: "IA y datos",  tier: "B" },
+        "Snowflake":                       { cat: "IA y datos",  tier: "B" },
+        "Palantir":                        { cat: "IA y datos",  tier: "B" },
+        "OpenAI":                          { cat: "IA y datos",  tier: "B" },
+        "Anthropic":                       { cat: "IA y datos",  tier: "A" },
+        "University of Miami":             { cat: "Universidad", tier: "B" },
+        "Florida International University":{ cat: "Universidad", tier: "C" },
+      };
+      const SOC_NAMES = {
+        "13-2051": "Analistas financieros", "13-1111": "Analistas de gestión", "15-2051": "Analistas de datos/BI",
+        "13-2054": "Riesgo financiero", "13-1041": "Cumplimiento", "11-3031": "Finanzas/admin",
+      };
+      const NOT_IN_DATA = ["Bitso", "dLocal"];
+      const CATS = ["Banca", "Pagos", "IA y datos", "Universidad"];
+      const TIERS = [["A", "A · declara"], ["B", "B · sin exclusión"], ["C", "C · exclusión / no verif."]];
+      const YEARS = { total: "Total", fy2024: "FY24", fy2025: "FY25", fy2026: "FY26" };
+
+      const state = { q: "", year: "total", soc: "", cats: new Set(), tiers: new Set(), selected: null, data: [] };
+      const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+      const fmt = (n) => Number(n || 0).toLocaleString("es-MX");
+      const money = (n) => (n ? "$" + fmt(n) : "sin dato");
+      const metaOf = (e) => META[e] || { cat: "Otro", tier: "C" };
+
+      // Employers × year, summing across SOC rows.
+      function aggregate(rows) {
+        const map = new Map();
+        for (const r of rows) {
+          if (state.soc && r.soc !== state.soc) continue;
+          if (!map.has(r.empresa)) map.set(r.empresa, { empresa: r.empresa, fy2024: 0, fy2025: 0, fy2026: 0, total: 0 });
+          const a = map.get(r.empresa);
+          a.fy2024 += r.fy2024; a.fy2025 += r.fy2025; a.fy2026 += r.fy2026;
+          a.total = a.fy2024 + a.fy2025 + a.fy2026;
+        }
+        return [...map.values()];
+      }
+
+      function visible() {
+        const agg = aggregate(state.data);
+        const q = state.q.trim().toLowerCase();
+        return agg
+          .filter((a) => !state.cats.size || state.cats.has(metaOf(a.empresa).cat))
+          .filter((a) => !state.tiers.size || state.tiers.has(metaOf(a.empresa).tier))
+          .filter((a) => !q || a.empresa.toLowerCase().includes(q) || state.data.some((r) => r.empresa === a.empresa && r.ciudad.toLowerCase().includes(q)))
+          .sort((x, y) => y[state.year] - x[state.year]);
+      }
+
+      function renderKpis() {
+        const emp = new Set(state.data.map((r) => r.empresa)).size;
+        const tierA = new Set(state.data.filter((r) => metaOf(r.empresa).tier === "A").map((r) => r.empresa)).size;
+        const flagged = state.data.filter((r) => r.salario_flag).length;
+        const unverified = state.data.filter((r) => r.e_verify !== "verificado").length;
+        document.getElementById("kpis").innerHTML = [
+          [emp, "empresas en el archivo"],
+          [tierA, "con declaración oficial de patrocinio (A)"],
+          [state.data.filter((r) => r.e_verify === "verificado").length, "E-Verify verificado (autodeclarado)"],
+          [flagged, "filas con salario a revisar"],
+        ].map(([n, l]) => `<div class="kpi"><div class="n">${fmt(n)}</div><div class="l">${esc(l)}</div></div>`).join("");
+      }
+
+      function renderFilters() {
+        document.getElementById("cats").innerHTML = CATS.map((c) =>
+          `<button type="button" class="chip" data-cat="${esc(c)}" aria-pressed="${state.cats.has(c)}">${esc(c)}</button>`).join("");
+        document.getElementById("tiers").innerHTML = TIERS.map(([t, l]) =>
+          `<button type="button" class="chip t${t}" data-tier="${t}" aria-pressed="${state.tiers.has(t)}">${esc(l)}</button>`).join("");
+        document.querySelectorAll("#yearSeg button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.y === state.year)));
+      }
+
+      function renderBars() {
+        const list = visible();
+        const max = Math.max(1, ...list.map((a) => a[state.year]));
+        document.getElementById("listTitle").textContent = `Empresas · ${YEARS[state.year]} · ${list.length} mostradas`;
+        document.getElementById("bars").innerHTML = list.length ? list.map((a) => {
+          const m = metaOf(a.empresa);
+          const pct = (a[state.year] / max) * 100;
+          const sel = state.selected === a.empresa;
+          return `<button type="button" class="bar" role="option" aria-selected="${sel}" data-emp="${esc(a.empresa)}">
+            <span class="name">${esc(a.empresa)}<span class="badge t${m.tier}">${m.tier}</span><span class="badge cat">${esc(m.cat)}</span></span>
+            <span class="val">${fmt(a[state.year])}</span>
+            <span class="track"><span class="fill" style="width:${pct.toFixed(1)}%"></span></span>
+          </button>`;
+        }).join("") : `<p class="empty">Ninguna empresa coincide con los filtros.</p>`;
+        const hidden = [...new Set(state.data.map((r) => r.empresa))].length - list.length;
+        document.getElementById("excluded").textContent =
+          `${hidden > 0 ? hidden + " empresas ocultas por filtros. " : ""}Sin LCA en el archivo (no mostradas): ${NOT_IN_DATA.join(", ")}.`;
+      }
+
+      function renderDetail() {
+        const el = document.getElementById("detail");
+        if (!state.selected) { el.innerHTML = `<p class="empty">Selecciona una empresa de la lista.</p>`; return; }
+        const rows = state.data.filter((r) => r.empresa === state.selected && (!state.soc || r.soc === state.soc));
+        if (!rows.length) { el.innerHTML = `<p class="empty">Sin filas para este filtro.</p>`; return; }
+        const agg = aggregate(state.data).find((a) => a.empresa === state.selected) || { fy2024: 0, fy2025: 0, fy2026: 0, total: 0 };
+        const m = metaOf(state.selected);
+        const legal = rows[0].nombres_legales;
+        const flagsSeen = [...new Set(rows.filter((r) => r.salario_flag).map((r) => r.salario_flag))];
+        const quote = rows.find((r) => r.patrocinio)?.patrocinio || "Sin texto de patrocinio en el archivo.";
+        const careers = rows[0].url_carreras;
+        el.innerHTML = `
+          <h3>${esc(state.selected)} <span class="badge t${m.tier}">${m.tier}</span><span class="badge cat">${esc(m.cat)}</span></h3>
+          <div class="legal">Nombres legales usados: ${esc(legal)}</div>
+          <div class="years">
+            <div class="yr q4"><div class="n">${fmt(agg.fy2024)}</div><div class="l">FY24</div></div>
+            <div class="yr q4"><div class="n">${fmt(agg.fy2025)}</div><div class="l">FY25</div></div>
+            <div class="yr partial"><div class="n">${fmt(agg.fy2026)}</div><div class="l">FY26</div></div>
+            <div class="yr"><div class="n">${fmt(agg.total)}</div><div class="l">Total</div></div>
+          </div>
+          <div class="tablewrap"><table>
+            <thead><tr><th>SOC</th><th>Puesto</th><th class="num">FY24</th><th class="num">FY25</th><th class="num">FY26</th><th>Salario anual (min · med · máx)</th></tr></thead>
+            <tbody>${rows.map((r) => `<tr>
+              <td>${esc(r.soc)}<br><span class="hint">${esc(SOC_NAMES[r.soc] || "")}</span></td>
+              <td>${esc(r.titulo)}<br><span class="hint">${esc(r.ciudad)}</span></td>
+              <td class="num">${fmt(r.fy2024)}</td><td class="num">${fmt(r.fy2025)}</td><td class="num">${fmt(r.fy2026)}</td>
+              <td>${money(r.salario_min)} · ${money(r.salario_mediana)} · ${money(r.salario_max)}
+                ${r.salario_flag === "error_probable" ? '<br><span class="flag">error probable</span>' : ""}
+                ${r.salario_flag === "revisar" ? '<br><span class="flag warn">revisar</span>' : ""}</td>
+            </tr>`).join("")}</tbody>
+          </table></div>
+          <p class="meta"><strong>Patrocinio (texto del archivo):</strong></p>
+          <blockquote class="quote">${esc(quote)}</blockquote>
+          <p class="meta"><strong>E-Verify:</strong> ${esc(rows[0].e_verify)} · <strong>Confianza:</strong> ${esc(rows[0].confianza)}</p>
+          <p class="meta"><strong>Prácticas F-1:</strong> ${esc(rows[0].practicas_f1 || "—")}</p>
+          <p class="meta"><a href="${esc(careers)}" target="_blank" rel="noopener noreferrer">Página de carreras ↗</a></p>
+          <div class="flagsRow">
+            <span class="hint">Consultado: ${esc(rows[0].fecha_consulta)}</span>
+            ${flagsSeen.length ? `<span class="flag">Revisar salarios antes de usar</span>` : ""}
+          </div>`;
+      }
+
+      function renderAll() { renderKpis(); renderFilters(); renderBars(); renderDetail(); }
+
+      function bind() {
+        document.getElementById("q").addEventListener("input", (e) => { state.q = e.target.value; renderBars(); });
+        document.getElementById("soc").addEventListener("change", (e) => { state.soc = e.target.value; renderAll(); });
+        document.getElementById("yearSeg").addEventListener("click", (e) => {
+          const b = e.target.closest("button"); if (!b) return; state.year = b.dataset.y; renderAll();
+        });
+        document.getElementById("cats").addEventListener("click", (e) => {
+          const b = e.target.closest("button"); if (!b) return;
+          toggle(state.cats, b.dataset.cat); renderAll();
+        });
+        document.getElementById("tiers").addEventListener("click", (e) => {
+          const b = e.target.closest("button"); if (!b) return;
+          toggle(state.tiers, b.dataset.tier); renderAll();
+        });
+        document.getElementById("bars").addEventListener("click", (e) => {
+          const b = e.target.closest("button"); if (!b) return;
+          state.selected = b.dataset.emp; renderBars(); renderDetail();
+        });
+      }
+      function toggle(set, v) { set.has(v) ? set.delete(v) : set.add(v); }
+
+      fetch("empresas-h1b.json", { cache: "no-cache" })
+        .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
+        .then((rows) => {
+          state.data = rows;
+          const top = aggregate(rows).sort((a, b) => b.total - a.total)[0];
+          state.selected = top ? top.empresa : null;
+          bind(); renderAll();
+        })
+        .catch(() => {
+          document.querySelector(".layout").outerHTML =
+            '<p class="notice">No se pudo cargar <code>empresas-h1b.json</code>. Sírvelo desde una carpeta (por ejemplo <code>python3 -m http.server</code>); abrirlo directo desde el disco no carga datos.</p>';
+        });
+    </script>
+  </body>
+</html>
