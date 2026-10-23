@@ -217,7 +217,7 @@
       const state = { q: "", year: "total", soc: "", cats: new Set(), tiers: new Set(), selected: null, data: [] };
       const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
       const fmt = (n) => Number(n || 0).toLocaleString("es-MX");
-      const money = (n) => (n ? "$" + fmt(n) : "—");
+      const money = (n) => (n ? "$" + fmt(n) : "sin dato");
       const metaOf = (e) => META[e] || { cat: "Otro", tier: "C" };
 
       // Employers × year, summing across SOC rows.

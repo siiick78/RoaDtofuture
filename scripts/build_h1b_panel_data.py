@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Turn research/empresas-h1b.csv into research/empresas-h1b.json for the panel.
 
-Adds a salary flag: values above 1,000,000 are almost certainly unit errors,
-values above 500,000 need a manual check. Nothing is corrected silently.
+Adds a salary flag: values above 1,000,000 are almost certainly unit errors and are
+blanked (None) in the panel data; the raw value is kept in salario_max_fuente.
+Values above 500,000 are flagged for manual review. Nothing is corrected silently.
 """
 import csv
 import json
@@ -29,6 +30,11 @@ def flag(row):
     return ""
 
 
+def wage(value, row):
+    # Wages flagged as probable unit errors are blanked, not used in the panel.
+    return None if flag(row) == "error_probable" else num(value)
+
+
 rows = []
 with SRC.open(encoding="utf-8-sig", newline="") as fh:
     for r in csv.DictReader(fh):
@@ -41,9 +47,10 @@ with SRC.open(encoding="utf-8-sig", newline="") as fh:
             "fy2026": num(r["LCA_FY2026"]),
             "titulo": r["titulo_puesto"],
             "ciudad": r["ciudad"],
-            "salario_min": num(r["salario_min"]),
-            "salario_mediana": num(r["salario_mediana"]),
-            "salario_max": num(r["salario_max"]),
+            "salario_min": wage(r["salario_min"], r),
+            "salario_mediana": wage(r["salario_mediana"], r),
+            "salario_max": wage(r["salario_max"], r),
+            "salario_max_fuente": r["salario_max"],
             "salario_flag": flag(r),
             "e_verify": r["E-Verify"],
             "url_carreras": r["URL_carreras"],
