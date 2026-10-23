@@ -2,18 +2,22 @@
   "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
   "basics": {
     "name": "Sebastian Hoyos Chartuni",
-    "label": "Admissions · University Operations · Technical Support",
+    "label": "MBA Candidate in Artificial Intelligence · Operations · Admissions",
     "email": "Hoyos9195@gmail.com",
     "phone": "+1 (786) 918-5906",
     "url": "",
-    "summary": "Bilingual admissions and operations professional with experience in higher education, student services, and technical support. Currently pursuing an MBA in Artificial Intelligence at Atlantis University. Experienced in guiding prospective students through the enrollment process, managing admissions documentation, supporting financial operations, and working in fast-paced customer-facing environments. Combines strong communication skills in English and Spanish with an analytical approach to records, technology, and process improvement.",
+    "summary": "Bilingual (English/Spanish) operations and admissions professional pursuing an MBA in Artificial Intelligence at Atlantis University (2026–2028). Background in higher-education admissions, student records, accounts payable, and customer-facing technical support. Brings an analytical, detail-oriented approach to records, process improvement, and technology tools, including a repair-order tracking application for a retail repair store.",
     "location": {
       "city": "Hialeah",
       "region": "FL",
       "countryCode": "US"
     },
     "profiles": [
-      { "network": "GitHub", "username": "siiick78", "url": "https://github.com/siiick78" }
+      {
+        "network": "GitHub",
+        "username": "siiick78",
+        "url": "https://github.com/siiick78"
+      }
     ]
   },
   "work": [
@@ -113,16 +117,51 @@
   ],
   "projects": [],
   "skills": [
-    { "name": "Admissions & Operations", "keywords": ["Student Advising & Admissions", "Accounts Payable & Administration", "Data & Record Management", "Process Improvement"] },
-    { "name": "Customer & Technical", "keywords": ["Customer Service & Sales", "Device Diagnostics & Repair", "App Development"] },
-    { "name": "Tools", "keywords": ["Microsoft Excel (advanced)", "Google Sheets", "OpenSIS", "Moodle", "Jotform", "Airtable"] }
+    {
+      "name": "Admissions & Operations",
+      "keywords": [
+        "Student Advising & Admissions",
+        "Accounts Payable & Administration",
+        "Data & Record Management",
+        "Process Improvement"
+      ]
+    },
+    {
+      "name": "Customer & Technical",
+      "keywords": [
+        "Customer Service & Sales",
+        "Device Diagnostics & Repair",
+        "App Development"
+      ]
+    },
+    {
+      "name": "Tools",
+      "keywords": [
+        "Microsoft Excel (advanced)",
+        "Google Sheets",
+        "OpenSIS",
+        "Moodle",
+        "Jotform",
+        "Airtable"
+      ]
+    }
   ],
   "certificates": [
-    { "name": "Duolingo English Test: 120", "issuer": "Duolingo", "date": "2026" }
+    {
+      "name": "Duolingo English Test: 120",
+      "issuer": "Duolingo",
+      "date": "2026"
+    }
   ],
   "languages": [
-    { "language": "Spanish", "fluency": "Native" },
-    { "language": "English", "fluency": "Professional Proficiency" }
+    {
+      "language": "Spanish",
+      "fluency": "Native"
+    },
+    {
+      "language": "English",
+      "fluency": "Professional Proficiency"
+    }
   ],
   "meta": {
     "lastModified": "2026-10-23"
