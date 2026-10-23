@@ -1,63 +1,128 @@
 {
   "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
   "basics": {
-    "name": "[Your Name]",
-    "label": "[Target role — e.g. Data Analyst · F-1 STEM student]",
-    "email": "[you@example.com]",
-    "phone": "",
+    "name": "Sebastian Hoyos Chartuni",
+    "label": "Admissions · University Operations · Technical Support",
+    "email": "Hoyos9195@gmail.com",
+    "phone": "+1 (786) 918-5906",
     "url": "",
-    "summary": "[2–3 lines: what you study, what you build, and the role you are looking for. Mention work authorization: F-1, eligible for CPT/OPT.]",
+    "summary": "Bilingual admissions and operations professional with experience in higher education, student services, and technical support. Currently pursuing an MBA in Artificial Intelligence at Atlantis University. Experienced in guiding prospective students through the enrollment process, managing admissions documentation, supporting financial operations, and working in fast-paced customer-facing environments. Combines strong communication skills in English and Spanish with an analytical approach to records, technology, and process improvement.",
     "location": {
-      "city": "[City]",
-      "region": "[State]",
+      "city": "Hialeah",
+      "region": "FL",
       "countryCode": "US"
     },
     "profiles": [
-      { "network": "LinkedIn", "username": "", "url": "" },
       { "network": "GitHub", "username": "siiick78", "url": "https://github.com/siiick78" }
     ]
   },
   "work": [
     {
-      "name": "[Company]",
-      "position": "[Position]",
-      "location": "[City, State]",
-      "startDate": "2024-01",
+      "name": "United International College (UIC)",
+      "position": "Admissions & Accounts Payable",
+      "location": "Miami, FL",
+      "startDate": "2025-08",
       "endDate": "",
       "highlights": [
-        "[Achievement with a number — e.g. Reduced report time 40% by automating X with Python]"
+        "Handle end-to-end admissions activities, including prospective-student guidance, documentation, and application follow-up.",
+        "Collaborated to enroll approximately 85 domestic and international students during the most recent admissions cycle.",
+        "Advise students and families in Spanish and English, explaining admissions requirements and institutional processes.",
+        "Support students with institutional procedures related to F-1 status, change of status, OPT, and CPT, within the scope of the role.",
+        "Manage accounts payable activities outside payroll, tracking payment information and supporting routine financial operations."
+      ]
+    },
+    {
+      "name": "Geeks Hollywood",
+      "position": "Repair Technician, Sales & Store Operations",
+      "location": "Hollywood, FL",
+      "startDate": "2025",
+      "endDate": "",
+      "highlights": [
+        "Handle customer intake, smartphone and laptop diagnostics and repairs, sales, and day-to-day store operations, contributing to average daily sales of $1.3K–$1.8K Monday through Saturday.",
+        "Designed and developed a web-based repair-order tracking application for device intake, ticket numbering, repair-status tracking, and customer lookup; currently in testing/pre-launch."
+      ]
+    },
+    {
+      "name": "Gamepoint Miami",
+      "position": "Operations Staff Member",
+      "location": "Miami, FL",
+      "startDate": "2024",
+      "endDate": "2025-08",
+      "highlights": [
+        "Helped open the location and supported day-to-day floor operations alongside the owners."
+      ]
+    },
+    {
+      "name": "Cinco Restaurante",
+      "position": "Server → Cook",
+      "location": "Miami, FL",
+      "startDate": "2023",
+      "endDate": "2024",
+      "highlights": [
+        "Progressed from customer service to kitchen operations, supporting daily restaurant service."
+      ]
+    },
+    {
+      "name": "Universidad de la Costa (CUC)",
+      "position": "Marketing & Admissions — Scholarship Position",
+      "location": "Barranquilla, Colombia",
+      "startDate": "2018",
+      "endDate": "2023",
+      "highlights": [
+        "Supported marketing, outreach, and admissions activities for prospective students while completing Civil Engineering coursework.",
+        "Contributed to institutional activities during the university's accreditation process."
       ]
     }
   ],
   "education": [
     {
       "institution": "Atlantis University",
-      "area": "[Major]",
-      "studyType": "[Degree]",
+      "area": "Business Administration in AI",
+      "studyType": "Master of Business Administration",
+      "location": "Miami, FL",
+      "startDate": "2026",
+      "endDate": "2028",
+      "note": "In progress"
+    },
+    {
+      "institution": "United International College (UIC)",
+      "area": "Business Administration",
+      "studyType": "Associate Degree",
       "location": "Miami, FL",
       "startDate": "",
-      "endDate": "[Expected graduation]",
-      "score": "",
-      "courses": []
-    }
-  ],
-  "projects": [
+      "endDate": "2026",
+      "note": "Expected 2026"
+    },
     {
-      "name": "[Portfolio project]",
-      "description": "[What it does, in one line]",
-      "url": "",
-      "keywords": ["SQL", "Python"],
-      "highlights": ["[Result or what you learned]"]
+      "institution": "Universidad de la Costa (CUC)",
+      "area": "Civil Engineering",
+      "studyType": "Bachelor's Degree",
+      "location": "Barranquilla, Colombia",
+      "startDate": "",
+      "endDate": "2025",
+      "note": "Degree awarded 2025; coursework completed 2023"
+    },
+    {
+      "institution": "Universidad de la Costa (CUC)",
+      "area": "Project Management",
+      "studyType": "Diploma",
+      "location": "Barranquilla, Colombia",
+      "startDate": "",
+      "endDate": ""
     }
   ],
+  "projects": [],
   "skills": [
-    { "name": "Data", "keywords": ["SQL", "Python", "Excel"] },
-    { "name": "Tools", "keywords": ["Git", "GitHub"] }
+    { "name": "Admissions & Operations", "keywords": ["Student Advising & Admissions", "Accounts Payable & Administration", "Data & Record Management", "Process Improvement"] },
+    { "name": "Customer & Technical", "keywords": ["Customer Service & Sales", "Device Diagnostics & Repair", "App Development"] },
+    { "name": "Tools", "keywords": ["Microsoft Excel (advanced)", "Google Sheets", "OpenSIS", "Moodle", "Jotform", "Airtable"] }
   ],
-  "certificates": [],
+  "certificates": [
+    { "name": "Duolingo English Test: 120", "issuer": "Duolingo", "date": "2026" }
+  ],
   "languages": [
     { "language": "Spanish", "fluency": "Native" },
-    { "language": "English", "fluency": "[Professional]" }
+    { "language": "English", "fluency": "Professional Proficiency" }
   ],
   "meta": {
     "lastModified": "2026-10-23"

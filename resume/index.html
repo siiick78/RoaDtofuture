@@ -162,7 +162,7 @@
         const education = (r.education || []).map((e) => `
           <div class="item">
             <div class="row"><span><span class="title">${txt([e.studyType, e.area].filter(Boolean).join(", "))}</span> · <span class="sub">${txt(e.institution)}${e.location ? ", " + txt(e.location) : ""}</span></span><span class="when">${range(e.startDate, e.endDate)}</span></div>
-            ${e.score ? `<p>GPA: ${txt(e.score)}</p>` : ""}${has(e.courses) ? `<p>Relevant coursework: ${e.courses.map(txt).join(", ")}</p>` : ""}
+            ${e.note ? `<p>${txt(e.note)}</p>` : ""}${e.score ? `<p>GPA: ${txt(e.score)}</p>` : ""}${has(e.courses) ? `<p>Relevant coursework: ${e.courses.map(txt).join(", ")}</p>` : ""}
           </div>`).join("");
 
         const skills = has(r.skills)
